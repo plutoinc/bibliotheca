@@ -7,7 +7,6 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "PLUTO_MEMBER")
 public class Member {
     @Id
     @GeneratedValue
@@ -27,4 +26,7 @@ public class Member {
 
     @Column
     private String nickName;
+
+    @OneToOne
+    private Wallet wallet;
 }

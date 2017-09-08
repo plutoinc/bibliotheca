@@ -9,7 +9,6 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "PLUTO_AUTHORITY")
 public class Authority implements GrantedAuthority {
     @Id
     @GeneratedValue

@@ -15,10 +15,10 @@ import java.time.LocalDateTime;
 public abstract class BaseEntity implements Serializable {
 
     @CreatedDate
-    @Column
+    @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @LastModifiedDate
-    @Column
+    @Column(nullable = false)
     private LocalDateTime updatedAt;
 }

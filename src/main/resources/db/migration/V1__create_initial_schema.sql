@@ -34,22 +34,22 @@ CREATE TABLE wallet (
 );
 
 ALTER TABLE authority
-  ADD CONSTRAINT UK_jdeu5vgpb8k5ptsqhrvamuad2 UNIQUE (name);
+  ADD CONSTRAINT UQ_constraint_authority_name UNIQUE (name);
 
 ALTER TABLE member
-  ADD CONSTRAINT UK_mbmcqelty0fbrvxp1q58dn57t UNIQUE (email);
+  ADD CONSTRAINT UQ_constraint_member_email UNIQUE (email);
 
 ALTER TABLE member
-  ADD CONSTRAINT FKp8fsc9xwq6v5ykpissv1dt9ma
+  ADD CONSTRAINT FK_constraint_member_wallet
 FOREIGN KEY (wallet_wallet_id)
 REFERENCES wallet;
 
 ALTER TABLE user_authority
-  ADD CONSTRAINT FKgvxjs381k6f48d5d2yi11uh89
+  ADD CONSTRAINT FK_constraint_user_authority_authority
 FOREIGN KEY (authority_id)
 REFERENCES authority;
 
 ALTER TABLE user_authority
-  ADD CONSTRAINT FKb27h85xa52amfh4qk85mlxudl
+  ADD CONSTRAINT FK_constraint_user_authority_member
 FOREIGN KEY (member_id)
 REFERENCES member;

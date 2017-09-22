@@ -11,10 +11,11 @@ import java.util.Date;
 @Data
 @Entity
 public class Wallet extends BaseEntity {
+
     @Id
     @GeneratedValue
     private Long walletId;
 
-    @Column
+    @Column(nullable = false)
     private String address;
 }

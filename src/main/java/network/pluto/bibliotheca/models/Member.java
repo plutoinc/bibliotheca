@@ -11,6 +11,7 @@ import java.util.List;
 @Data
 @Entity
 public class Member extends BaseEntity {
+
     @Id
     @GeneratedValue
     private long memberId;
@@ -23,13 +24,13 @@ public class Member extends BaseEntity {
     private String password;
 
     @JsonIgnore
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(name = "REL_MEMBER_AUTHORITY",
             joinColumns = @JoinColumn(name = "MEMBER_ID"),
             inverseJoinColumns = @JoinColumn(name = "AUTHORITY_ID"))
     private List<Authority> authorities;
 
-    @Column
+    @Column(nullable = false)
     private String fullName;
 
     @Column

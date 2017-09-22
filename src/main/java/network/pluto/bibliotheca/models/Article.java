@@ -18,22 +18,22 @@ public class Article extends BaseEntity {
     @GeneratedValue
     private long articleId;
 
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
-    @Column
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private ArticleType type;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "REL_ARTICLE_AUTHOR",
             joinColumns = @JoinColumn(name = "ARTICLE_ID"),
             inverseJoinColumns = @JoinColumn(name = "AUTHOR_ID"))
     @OrderColumn(name = "AUTHOR_ORDER")
     private List<Author> authors;
 
-    @Column
+    @Column(nullable = false)
     private String title;
 
     @Column
@@ -58,4 +58,7 @@ public class Article extends BaseEntity {
 
     @Column
     private LocalDateTime articleUpdatedAt;
+
+    @OneToMany(mappedBy = "article", fetch = FetchType.LAZY)
+    private List<Evaluation> evaluations;
 }

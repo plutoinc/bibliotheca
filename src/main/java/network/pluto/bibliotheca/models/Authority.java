@@ -14,6 +14,7 @@ import javax.persistence.*;
 @Data
 @Entity
 public class Authority extends BaseEntity implements GrantedAuthority {
+
     @Id
     @GeneratedValue
     private long authorityId;

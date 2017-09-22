@@ -20,16 +20,16 @@ public class Author extends BaseEntity {
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
-    @Column
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private AuthorType type;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
     @Column
     private String organization;
 
-    @ManyToMany(mappedBy = "authors")
+    @ManyToMany(mappedBy = "authors", fetch = FetchType.LAZY)
     private List<Article> articles;
 }

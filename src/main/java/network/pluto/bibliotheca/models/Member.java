@@ -18,20 +18,24 @@ public class Member extends BaseEntity {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
     @JsonIgnore
+    @Column(nullable = false)
     private String password;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "USER_AUTHORITY",
-            joinColumns = @JoinColumn(name = "MEMBER_ID", referencedColumnName = "memberId"),
-            inverseJoinColumns = @JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "authorityId"))
     @JsonIgnore
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "REL_MEMBER_AUTHORITY",
+            joinColumns = @JoinColumn(name = "MEMBER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "AUTHORITY_ID"))
     private List<Authority> authorities;
 
     @Column
     private String fullName;
 
+    @Column
+    private String profileImage;
+
     @OneToOne
+    @JoinColumn(name = "WALLER_ID")
     private Wallet wallet;
 }

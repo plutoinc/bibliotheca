@@ -10,17 +10,17 @@ import javax.persistence.Embeddable;
 public class ArticlePoint {
 
     @Column
-    private double total;
+    private Double total;
 
     @Column
-    private double originality;
+    private Double originality;
 
     @Column
-    private double contribution;
+    private Double contribution;
 
     @Column
-    private double analysis;
+    private Double analysis;
 
     @Column
-    private double expressiveness;
+    private Double expressiveness;
 }

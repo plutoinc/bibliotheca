@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
@@ -15,7 +16,7 @@ public class Evaluation extends BaseEntity {
     @GeneratedValue
     private long evaluationId;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
@@ -24,19 +25,19 @@ public class Evaluation extends BaseEntity {
     private Article article;
 
     @Column
-    private double total;
+    private Double total;
 
     @Column
-    private double originality;
+    private Double originality;
 
     @Column
-    private double contribution;
+    private Double contribution;
 
     @Column
-    private double analysis;
+    private Double analysis;
 
     @Column
-    private double expressiveness;
+    private Double expressiveness;
 
     @Column
     private String originalityComment;
@@ -50,6 +51,6 @@ public class Evaluation extends BaseEntity {
     @Column
     private String expressivenessComment;
 
-    @OneToMany(mappedBy = "evaluation")
-    private List<Comment> comments;
+    @OneToMany(mappedBy = "evaluation", fetch = FetchType.LAZY)
+    private List<Comment> comments = new ArrayList<>();
 }

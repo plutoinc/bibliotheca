@@ -24,7 +24,7 @@ public class Member extends BaseEntity {
     private String password;
 
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "REL_MEMBER_AUTHORITY",
             joinColumns = @JoinColumn(name = "MEMBER_ID"),
             inverseJoinColumns = @JoinColumn(name = "AUTHORITY_ID"))

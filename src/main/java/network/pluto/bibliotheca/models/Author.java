@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 import network.pluto.bibliotheca.enums.AuthorType;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
@@ -16,7 +17,7 @@ public class Author extends BaseEntity {
     @GeneratedValue
     private long authorId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
@@ -31,5 +32,5 @@ public class Author extends BaseEntity {
     private String organization;
 
     @ManyToMany(mappedBy = "authors", fetch = FetchType.LAZY)
-    private List<Article> articles;
+    private List<Article> articles = new ArrayList<>();
 }

@@ -14,7 +14,7 @@ public class Comment extends BaseEntity {
     @GeneratedValue
     private long commentId;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 

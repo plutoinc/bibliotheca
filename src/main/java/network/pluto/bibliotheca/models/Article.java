@@ -7,6 +7,7 @@ import network.pluto.bibliotheca.enums.ArticleType;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
@@ -31,15 +32,17 @@ public class Article extends BaseEntity {
             joinColumns = @JoinColumn(name = "ARTICLE_ID"),
             inverseJoinColumns = @JoinColumn(name = "AUTHOR_ID"))
     @OrderColumn(name = "AUTHOR_ORDER")
-    private List<Author> authors;
+    private List<Author> authors = new ArrayList<>();
 
     @Column(nullable = false)
     private String title;
 
     @Column
+    @Lob
     private String articleAbstract;
 
     @Column
+    @Lob
     private String summary;
 
     @Column
@@ -60,5 +63,5 @@ public class Article extends BaseEntity {
     private LocalDateTime articleUpdatedAt;
 
     @OneToMany(mappedBy = "article", fetch = FetchType.LAZY)
-    private List<Evaluation> evaluations;
+    private List<Evaluation> evaluations = new ArrayList<>();
 }

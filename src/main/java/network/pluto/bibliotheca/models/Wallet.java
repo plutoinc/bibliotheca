@@ -13,7 +13,7 @@ import java.util.Date;
 public class Wallet extends BaseEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long walletId;
 
     @Column(nullable = false)

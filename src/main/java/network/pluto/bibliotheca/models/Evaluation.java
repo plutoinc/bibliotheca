@@ -13,7 +13,7 @@ import java.util.List;
 public class Evaluation extends BaseEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long evaluationId;
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)

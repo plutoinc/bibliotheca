@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class Authority extends BaseEntity implements GrantedAuthority {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long authorityId;
 
     @JsonIgnore

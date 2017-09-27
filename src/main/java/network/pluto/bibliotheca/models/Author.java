@@ -14,7 +14,7 @@ import java.util.List;
 public class Author extends BaseEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long authorId;
 
     @ManyToOne(fetch = FetchType.EAGER)

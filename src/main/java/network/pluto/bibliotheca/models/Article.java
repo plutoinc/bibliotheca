@@ -16,10 +16,10 @@ import java.util.List;
 public class Article extends BaseEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long articleId;
 
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
@@ -27,7 +27,7 @@ public class Article extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private ArticleType type;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "REL_ARTICLE_AUTHOR",
             joinColumns = @JoinColumn(name = "ARTICLE_ID"),
             inverseJoinColumns = @JoinColumn(name = "AUTHOR_ID"))

@@ -13,7 +13,7 @@ import java.util.List;
 public class Member extends BaseEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long memberId;
 
     @Column(nullable = false, unique = true)

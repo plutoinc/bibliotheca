@@ -38,8 +38,4 @@ public class Member extends BaseEntity {
 
     @Column
     private String organization;
-
-    @OneToOne
-    @JoinColumn(name = "WALLER_ID")
-    private Wallet wallet;
 }

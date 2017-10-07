@@ -18,4 +18,9 @@ public class Wallet extends BaseEntity {
 
     @Column(nullable = false)
     private String address;
+
+    @OneToOne
+    @JoinColumn(name = "MEMBER_ID")
+    @Column(unique = true)
+    private Member member;
 }

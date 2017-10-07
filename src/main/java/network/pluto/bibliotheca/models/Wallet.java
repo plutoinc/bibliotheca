@@ -2,10 +2,8 @@ package network.pluto.bibliotheca.models;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
@@ -19,8 +17,7 @@ public class Wallet extends BaseEntity {
     @Column(nullable = false)
     private String address;
 
-    @OneToOne
-    @JoinColumn(name = "MEMBER_ID")
-    @Column(unique = true)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MEMBER_ID", unique = true)
     private Member member;
 }

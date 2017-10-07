@@ -38,4 +38,7 @@ public class Member extends BaseEntity {
 
     @Column
     private String organization;
+
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "member")
+    private Wallet wallet;
 }

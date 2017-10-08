@@ -51,6 +51,9 @@ public class Evaluation extends BaseEntity {
     @Column
     private String expressivenessComment;
 
+    @Column(nullable = false)
+    private int vote;
+
     @OneToMany(mappedBy = "evaluation", fetch = FetchType.LAZY)
     private List<Comment> comments = new ArrayList<>();
 }

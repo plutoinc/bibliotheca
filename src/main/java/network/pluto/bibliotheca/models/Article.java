@@ -19,7 +19,7 @@ public class Article extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long articleId;
 
-    @ManyToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 

@@ -31,13 +31,13 @@ public class Member extends BaseEntity {
     private List<Authority> authorities;
 
     @Column(nullable = false)
-    private String fullName;
+    private String name;
 
     @Column
     private String profileImage;
 
     @Column
-    private String organization;
+    private String institution;
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "member")
     private Wallet wallet;

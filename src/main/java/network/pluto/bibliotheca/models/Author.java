@@ -29,7 +29,7 @@ public class Author extends BaseEntity {
     private String name;
 
     @Column
-    private String organization;
+    private String institution;
 
     @ManyToMany(mappedBy = "authors", fetch = FetchType.LAZY)
     private List<Article> articles = new ArrayList<>();

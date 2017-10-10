@@ -25,31 +25,8 @@ public class Evaluation extends BaseEntity {
     private Article article;
 
     @Column
-    private Double total;
-
-    @Column
-    private Double originality;
-
-    @Column
-    private Double contribution;
-
-    @Column
-    private Double analysis;
-
-    @Column
-    private Double expressiveness;
-
-    @Column
-    private String originalityComment;
-
-    @Column
-    private String contributionComment;
-
-    @Column
-    private String analysisComment;
-
-    @Column
-    private String expressivenessComment;
+    @Embedded
+    private EvaluationPoint point;
 
     @Column(nullable = false)
     private int vote;

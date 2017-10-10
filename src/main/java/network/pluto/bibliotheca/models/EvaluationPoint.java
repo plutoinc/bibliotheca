@@ -35,4 +35,9 @@ public class EvaluationPoint {
 
     @Column
     private String expressivenessComment;
+
+    public void updateTotal() {
+        int total = originality + contribution + analysis + expressiveness;
+        this.total = total / 4;
+    }
 }

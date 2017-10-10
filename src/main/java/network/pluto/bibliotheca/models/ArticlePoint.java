@@ -23,4 +23,9 @@ public class ArticlePoint {
 
     @Column
     private Double expressiveness;
+
+    public void updateTotal() {
+        double total = originality + contribution + analysis + expressiveness;
+        this.total = total / 4;
+    }
 }

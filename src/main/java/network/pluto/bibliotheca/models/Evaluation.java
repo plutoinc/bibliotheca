@@ -18,38 +18,15 @@ public class Evaluation extends BaseEntity {
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "MEMBER_ID")
-    private Member member;
+    private Member createdBy;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "ARTICLE_ID")
     private Article article;
 
     @Column
-    private Double total;
-
-    @Column
-    private Double originality;
-
-    @Column
-    private Double contribution;
-
-    @Column
-    private Double analysis;
-
-    @Column
-    private Double expressiveness;
-
-    @Column
-    private String originalityComment;
-
-    @Column
-    private String contributionComment;
-
-    @Column
-    private String analysisComment;
-
-    @Column
-    private String expressivenessComment;
+    @Embedded
+    private EvaluationPoint point;
 
     @Column(nullable = false)
     private int vote;

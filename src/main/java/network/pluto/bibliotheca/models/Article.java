@@ -21,7 +21,7 @@ public class Article extends BaseEntity {
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "MEMBER_ID")
-    private Member member;
+    private Member createdBy;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
@@ -39,10 +39,6 @@ public class Article extends BaseEntity {
 
     @Column
     @Lob
-    private String articleAbstract;
-
-    @Column
-    @Lob
     private String summary;
 
     @Column
@@ -51,6 +47,10 @@ public class Article extends BaseEntity {
     @Column
     @Enumerated(EnumType.STRING)
     private ArticleSource source;
+
+    @Column
+    @Lob
+    private String note;
 
     @Column
     @Embedded

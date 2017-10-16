@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"MEMBER_ID", "EVALUATION_ID"}))
 @Entity
 public class EvaluationVote extends BaseEntity {
 

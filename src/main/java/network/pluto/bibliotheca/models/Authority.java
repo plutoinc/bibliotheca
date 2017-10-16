@@ -24,10 +24,6 @@ public class Authority extends BaseEntity implements GrantedAuthority {
     @Enumerated(EnumType.STRING)
     private AuthorityName name;
 
-    public Authority(AuthorityName name) {
-        this.name = name;
-    }
-
     @Override
     public String getAuthority() {
         return name.name();

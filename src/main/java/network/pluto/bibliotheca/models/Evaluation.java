@@ -9,6 +9,7 @@ import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"MEMBER_ID", "ARTICLE_ID"}))
 @Entity
 public class Evaluation extends BaseEntity {
 

@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import network.pluto.bibliotheca.enums.ArticleSource;
 import network.pluto.bibliotheca.enums.ArticleType;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -37,8 +38,9 @@ public class Article extends BaseEntity {
     @Column(nullable = false)
     private String title;
 
-    @Column
+    @Type(type = "text")
     @Lob
+    @Column
     private String summary;
 
     @Column
@@ -48,8 +50,9 @@ public class Article extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private ArticleSource source;
 
-    @Column
+    @Type(type = "text")
     @Lob
+    @Column
     private String note;
 
     @Column

@@ -16,28 +16,28 @@ public class EvaluationPoint {
     private int originality;
 
     @Column(nullable = false)
-    private int contribution;
+    private int significance;
 
     @Column(nullable = false)
-    private int analysis;
+    private int validity;
 
     @Column(nullable = false)
-    private int expressiveness;
+    private int organization;
 
     @Column
     private String originalityComment;
 
     @Column
-    private String contributionComment;
+    private String significanceComment;
 
     @Column
-    private String analysisComment;
+    private String validityComment;
 
     @Column
-    private String expressivenessComment;
+    private String organizationComment;
 
     public void updateTotal() {
-        int total = originality + contribution + analysis + expressiveness;
+        int total = originality + significance + validity + organization;
         this.total = total / 4;
     }
 }

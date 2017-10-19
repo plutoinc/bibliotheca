@@ -26,7 +26,10 @@ public class Transaction {
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "varchar(32) default 'TX_REQUESTED'")
     @Enumerated(EnumType.STRING)
     private TransactionStatus transactionStatus;
+
+    @Column
+    private String transactionData;
 }

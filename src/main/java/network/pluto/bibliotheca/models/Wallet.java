@@ -25,4 +25,8 @@ public class Wallet extends BaseEntity {
     @Column(nullable = false, columnDefinition = "varchar(255) default 'INVALID'")
     @Enumerated(EnumType.STRING)
     private WalletStatus walletStatus = WalletStatus.INVALID;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "TRANSACTION_ID")
+    private Transaction transaction;
 }

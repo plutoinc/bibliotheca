@@ -16,16 +16,16 @@ public class ArticlePoint {
     private Double originality;
 
     @Column
-    private Double contribution;
+    private Double significance;
 
     @Column
-    private Double analysis;
+    private Double validity;
 
     @Column
-    private Double expressiveness;
+    private Double organization;
 
     public void updateTotal() {
-        double total = originality + contribution + analysis + expressiveness;
+        double total = originality + significance + validity + organization;
         this.total = total / 4;
     }
 }

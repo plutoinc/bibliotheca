@@ -44,11 +44,7 @@ public class Article extends BaseEntity {
     private String summary;
 
     @Column
-    private String link;
-
-    @Column
-    @Enumerated(EnumType.STRING)
-    private ArticleSource source;
+    private Double point;
 
     @Type(type = "text")
     @Lob
@@ -56,8 +52,11 @@ public class Article extends BaseEntity {
     private String note;
 
     @Column
-    @Embedded
-    private ArticlePoint point;
+    private String link;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private ArticleSource source;
 
     @Column
     private LocalDateTime articlePublishedAt;

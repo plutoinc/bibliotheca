@@ -2,6 +2,7 @@ package network.pluto.bibliotheca.models;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -25,9 +26,13 @@ public class Evaluation extends BaseEntity {
     @JoinColumn(name = "ARTICLE_ID")
     private Article article;
 
+    @Column(nullable = false)
+    private int point;
+
+    @Type(type = "text")
+    @Lob
     @Column
-    @Embedded
-    private EvaluationPoint point;
+    private String evaluation;
 
     @Column(nullable = false)
     private int vote;

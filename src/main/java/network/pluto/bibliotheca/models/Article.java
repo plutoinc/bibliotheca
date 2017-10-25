@@ -67,4 +67,11 @@ public class Article extends BaseEntity {
 
     @OneToMany(mappedBy = "article", fetch = FetchType.LAZY)
     private List<Evaluation> evaluations = new ArrayList<>();
+
+    @Column(nullable = false)
+    private int evaluationSize = 0;
+
+    public void increaseEvaluationSize() {
+        ++evaluationSize;
+    }
 }

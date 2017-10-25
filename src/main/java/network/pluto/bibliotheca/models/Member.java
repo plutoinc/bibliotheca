@@ -46,5 +46,9 @@ public class Member extends BaseEntity {
     private Wallet wallet;
 
     @Column(nullable = false)
-    private int reputation;
+    private long reputation = 0;
+
+    public void increaseReputation(long point) {
+        reputation = +point;
+    }
 }

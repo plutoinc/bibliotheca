@@ -30,8 +30,19 @@ public class Evaluation extends BaseEntity {
     private EvaluationPoint point;
 
     @Column(nullable = false)
-    private int vote;
+    private int vote = 0;
 
     @OneToMany(mappedBy = "evaluation", fetch = FetchType.LAZY)
     private List<Comment> comments = new ArrayList<>();
+
+    @Column(nullable = false)
+    private int commentSize = 0;
+
+    public void increaseVote() {
+        ++vote;
+    }
+
+    public void increaseCommentSize() {
+        ++commentSize;
+    }
 }

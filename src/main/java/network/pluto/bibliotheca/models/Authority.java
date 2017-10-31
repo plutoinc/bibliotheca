@@ -1,17 +1,17 @@
 package network.pluto.bibliotheca.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import network.pluto.bibliotheca.enums.AuthorityName;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 
-@NoArgsConstructor
-@EqualsAndHashCode(callSuper = false)
-@Data
+@ToString
+@Getter
+@Setter
 @Entity
 public class Authority extends BaseEntity implements GrantedAuthority {
 

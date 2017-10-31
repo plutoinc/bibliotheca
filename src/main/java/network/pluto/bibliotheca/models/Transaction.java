@@ -1,12 +1,16 @@
 package network.pluto.bibliotheca.models;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import network.pluto.bibliotheca.enums.TransactionStatus;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
-@Data
+@ToString(exclude = { "member" })
+@Getter
+@Setter
 @Entity
 public class Transaction {
     @GenericGenerator(

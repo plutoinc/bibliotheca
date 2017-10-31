@@ -1,15 +1,17 @@
 package network.pluto.bibliotheca.models;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import network.pluto.bibliotheca.enums.AuthorType;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@EqualsAndHashCode(callSuper = true)
-@Data
+@ToString(exclude = { "member", "articles" })
+@Getter
+@Setter
 @Entity
 public class Author extends BaseEntity {
 

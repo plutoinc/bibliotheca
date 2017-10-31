@@ -1,13 +1,15 @@
 package network.pluto.bibliotheca.models;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import network.pluto.bibliotheca.enums.WalletStatus;
 
 import javax.persistence.*;
 
-@EqualsAndHashCode(callSuper = false)
-@Data
+@ToString(exclude = { "member", "transaction" })
+@Getter
+@Setter
 @Entity
 public class Wallet extends BaseEntity {
 

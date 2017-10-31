@@ -1,7 +1,8 @@
 package network.pluto.bibliotheca.models;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import network.pluto.bibliotheca.enums.ArticleSource;
 import network.pluto.bibliotheca.enums.ArticleType;
 import org.hibernate.annotations.Type;
@@ -11,8 +12,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@EqualsAndHashCode(callSuper = true)
-@Data
+@ToString(exclude = { "createdBy", "authors", "evaluations" })
+@Getter
+@Setter
 @Entity
 public class Article extends BaseEntity {
 

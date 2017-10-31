@@ -1,15 +1,17 @@
 package network.pluto.bibliotheca.models;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@EqualsAndHashCode(callSuper = true)
-@Data
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"MEMBER_ID", "ARTICLE_ID"}))
+@ToString(exclude = { "createdBy", "article", "comments" })
+@Getter
+@Setter
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "MEMBER_ID", "ARTICLE_ID" }))
 @Entity
 public class Evaluation extends BaseEntity {
 

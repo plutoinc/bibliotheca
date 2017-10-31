@@ -1,11 +1,15 @@
 package network.pluto.bibliotheca.models;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
-@Data
+@ToString
+@Getter
+@Setter
 @Embeddable
 public class ArticlePoint {
 

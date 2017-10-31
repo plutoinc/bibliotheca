@@ -9,6 +9,5 @@ import java.util.List;
 
 public interface EvaluationVoteRepository extends JpaRepository<EvaluationVote, Long> {
     boolean existsByMemberAndEvaluation(Member member, Evaluation evaluation);
-
     List<EvaluationVote> findByMemberAndEvaluationIn(Member member, List<Evaluation> evaluations);
 }

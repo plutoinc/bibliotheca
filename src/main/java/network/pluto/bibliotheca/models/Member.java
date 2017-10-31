@@ -1,14 +1,16 @@
 package network.pluto.bibliotheca.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
 
-@EqualsAndHashCode(callSuper = true)
-@Data
+@ToString(exclude = { "authorities", "wallet" })
+@Getter
+@Setter
 @Entity
 public class Member extends BaseEntity {
 

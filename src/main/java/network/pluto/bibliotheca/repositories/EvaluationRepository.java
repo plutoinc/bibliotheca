@@ -11,12 +11,8 @@ import java.util.List;
 
 public interface EvaluationRepository extends JpaRepository<Evaluation, Long> {
     long countByArticle(Article article);
-
     boolean existsByCreatedByAndArticle(Member createdBy, Article article);
-
     List<Evaluation> findByCreatedByAndArticleIn(Member createdBy, List<Article> articles);
-
     Page<Evaluation> findByCreatedBy(Member createdBy, Pageable pageable);
-
     Page<Evaluation> findByArticle(Article article, Pageable pageable);
 }

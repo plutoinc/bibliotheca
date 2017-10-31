@@ -1,12 +1,14 @@
 package network.pluto.bibliotheca.models;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
-@EqualsAndHashCode(callSuper = true)
-@Data
+@ToString(exclude = { "member" })
+@Getter
+@Setter
 @Entity
 public class MemberReputation extends BaseEntity {
 

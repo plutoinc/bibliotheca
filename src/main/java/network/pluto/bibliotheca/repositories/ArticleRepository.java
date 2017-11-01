@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface ArticleRepository extends JpaRepository<Article, Long> {
+public interface ArticleRepository extends JpaRepository<Article, Long>, ArticleRepositoryCustom {
     Page<Article> findByCreatedBy(Member createdBy, Pageable pageable);
     Page<Article> findByArticleIdIn(List<Long> articleIds, Pageable pageable);
 }

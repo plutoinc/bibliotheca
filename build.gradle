@@ -1,11 +1,23 @@
 buildscript {
     repositories {
         mavenCentral()
+        maven { url 'http://repo.spring.io/plugins-release' }
+    }
+    dependencies {
+        classpath 'io.spring.gradle:propdeps-plugin:0.0.9.RELEASE'
     }
 }
 
 ext {
     springBootVersion = '1.5.6.RELEASE'
+    generatedSourcesDir = file("${buildDir}/generated")
+}
+
+configure(allprojects) {
+    apply plugin: 'propdeps'
+    apply plugin: 'propdeps-maven'
+    apply plugin: 'propdeps-idea'
+    apply plugin: 'propdeps-eclipse'
 }
 
 apply plugin: 'java'
@@ -29,11 +41,40 @@ dependencies {
 
     compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310')
 
-    compileOnly('org.projectlombok:lombok')
-    tlstCompile('org.springframework.boot:spring-boot-starter-test')
+    compile('com.querydsl:querydsl-core')
+    compile('com.querydsl:querydsl-apt')
+    compile('com.querydsl:querydsl-jpa')
+
+    provided('org.projectlombok:lombok')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('org.springframework.security:spring-security-test')
 }
 
 dependencyManagement {
     imports { mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}") }
 }
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+            srcDir generatedSourcesDir
+        }
+    }
+}
+
+configurations {
+    provided
+}
+
+task generateQueryDSL(type: JavaCompile, group: 'build') {
+    source = sourceSets.main.java
+    classpath = configurations.compile + configurations.provided
+    options.compilerArgs = [
+            '-proc:only',
+            '-processor', 'com.querydsl.apt.jpa.JPAAnnotationProcessor'
+    ]
+    destinationDir = generatedSourcesDir
+}
+
+compileJava.dependsOn(generateQueryDSL)

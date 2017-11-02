@@ -11,4 +11,5 @@ import java.util.List;
 public interface ArticleRepository extends JpaRepository<Article, Long>, ArticleRepositoryCustom {
     Page<Article> findByCreatedBy(Member createdBy, Pageable pageable);
     Page<Article> findByArticleIdIn(List<Long> articleIds, Pageable pageable);
+    long countByCreatedBy(Member createdBy);
 }

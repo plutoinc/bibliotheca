@@ -15,4 +15,5 @@ public interface EvaluationRepository extends JpaRepository<Evaluation, Long> {
     List<Evaluation> findByCreatedByAndArticleIn(Member createdBy, List<Article> articles);
     Page<Evaluation> findByCreatedBy(Member createdBy, Pageable pageable);
     Page<Evaluation> findByArticle(Article article, Pageable pageable);
+    long countByCreatedBy(Member createdBy);
 }

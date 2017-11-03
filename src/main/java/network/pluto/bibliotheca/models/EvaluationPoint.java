@@ -40,6 +40,9 @@ public class EvaluationPoint {
     @Column
     private String organizationComment;
 
+    @Column
+    private String review;
+
     public void updateTotal() {
         int total = originality + significance + validity + organization;
         this.total = total / 4;

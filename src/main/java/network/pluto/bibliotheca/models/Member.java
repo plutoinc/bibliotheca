@@ -51,6 +51,6 @@ public class Member extends BaseEntity {
     private long reputation = 0;
 
     public void increaseReputation(long point) {
-        reputation = +point;
+        reputation += point;
     }
 }

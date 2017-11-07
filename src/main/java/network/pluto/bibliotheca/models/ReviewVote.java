@@ -6,12 +6,12 @@ import lombok.ToString;
 
 import javax.persistence.*;
 
-@ToString(exclude = { "member", "evaluation" })
+@ToString(exclude = { "member", "review" })
 @Getter
 @Setter
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "MEMBER_ID", "EVALUATION_ID" }))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "MEMBER_ID", "REVIEW_ID" }))
 @Entity
-public class EvaluationVote extends BaseEntity {
+public class ReviewVote extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -22,6 +22,6 @@ public class EvaluationVote extends BaseEntity {
     private Member member;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "EVALUATION_ID")
-    private Evaluation evaluation;
+    @JoinColumn(name = "REVIEW_ID")
+    private Review review;
 }

@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@ToString(exclude = { "createdBy", "authors", "evaluations" })
+@ToString(exclude = { "createdBy", "authors", "reviews" })
 @Getter
 @Setter
 @Entity
@@ -68,12 +68,12 @@ public class Article extends BaseEntity {
     private LocalDateTime articleUpdatedAt;
 
     @OneToMany(mappedBy = "article", fetch = FetchType.LAZY)
-    private List<Evaluation> evaluations = new ArrayList<>();
+    private List<Review> reviews = new ArrayList<>();
 
     @Column(nullable = false)
-    private int evaluationSize = 0;
+    private int reviewSize = 0;
 
-    public void increaseEvaluationSize() {
-        ++evaluationSize;
+    public void increaseReviewSize() {
+        ++reviewSize;
     }
 }

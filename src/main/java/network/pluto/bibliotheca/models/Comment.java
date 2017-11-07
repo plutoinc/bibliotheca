@@ -6,7 +6,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 
-@ToString(exclude = { "createdBy", "evaluation" })
+@ToString(exclude = { "createdBy", "review" })
 @Getter
 @Setter
 @Entity
@@ -21,8 +21,8 @@ public class Comment extends BaseEntity {
     private Member createdBy;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "EVALUATION_ID")
-    private Evaluation evaluation;
+    @JoinColumn(name = "REVIEW_ID")
+    private Review review;
 
     @Column(nullable = false)
     private String comment;

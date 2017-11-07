@@ -11,7 +11,7 @@ import javax.persistence.Embeddable;
 @Getter
 @Setter
 @Embeddable
-public class EvaluationPoint {
+public class ReviewPoint {
 
     @Column(nullable = false)
     private double total;

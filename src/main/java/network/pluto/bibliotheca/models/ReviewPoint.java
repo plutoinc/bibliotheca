@@ -32,7 +32,7 @@ public class ReviewPoint {
     private String review;
 
     public void updateTotal() {
-        int total = originality + significance + validity + organization;
-        this.total = total / 4;
+        double total = originality + significance + validity + organization;
+        this.total = total / 4.0;
     }
 }

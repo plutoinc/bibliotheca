@@ -30,6 +30,6 @@ public class ArticlePoint {
 
     public void updateTotal() {
         double total = originality + significance + validity + organization;
-        this.total = total / 4;
+        this.total = total / 4.0;
     }
 }

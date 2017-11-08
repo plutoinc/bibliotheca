@@ -29,18 +29,6 @@ public class ReviewPoint {
     private int organization;
 
     @Column
-    private String originalityComment;
-
-    @Column
-    private String significanceComment;
-
-    @Column
-    private String validityComment;
-
-    @Column
-    private String organizationComment;
-
-    @Column
     private String review;
 
     public void updateTotal() {

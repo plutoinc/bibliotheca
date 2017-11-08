@@ -14,8 +14,9 @@ import java.util.List;
 @Entity
 public class Member extends BaseEntity {
 
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "memberSequence")
+    @SequenceGenerator(name = "memberSequence", sequenceName = "member_sequence", allocationSize = 1)
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long memberId;
 
     @Column(nullable = false, unique = true)

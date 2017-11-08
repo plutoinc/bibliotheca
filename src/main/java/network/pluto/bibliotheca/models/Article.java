@@ -18,8 +18,9 @@ import java.util.List;
 @Entity
 public class Article extends BaseEntity {
 
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "articleSequence")
+    @SequenceGenerator(name = "articleSequence", sequenceName = "article_sequence", allocationSize = 1)
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long articleId;
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)

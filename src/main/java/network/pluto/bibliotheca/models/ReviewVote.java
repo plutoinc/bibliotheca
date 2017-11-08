@@ -13,8 +13,9 @@ import javax.persistence.*;
 @Entity
 public class ReviewVote extends BaseEntity {
 
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reviewVoteSequence")
+    @SequenceGenerator(name = "reviewVoteSequence", sequenceName = "review_vote_sequence", allocationSize = 1)
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)

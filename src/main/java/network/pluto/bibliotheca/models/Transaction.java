@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import network.pluto.bibliotheca.enums.TransactionStatus;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
@@ -13,17 +12,10 @@ import javax.persistence.*;
 @Setter
 @Entity
 public class Transaction {
-    @GenericGenerator(
-            name = "transactionSequenceGenerator",
-            strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
-            parameters = {
-                    @org.hibernate.annotations.Parameter(name = "sequence_name", value = "TRANSACTION_SEQUENCE"),
-                    @org.hibernate.annotations.Parameter(name = "initial_value", value = "1"),
-                    @org.hibernate.annotations.Parameter(name = "increment_size", value = "1")
-            }
-    )
+
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "transactionSequence")
+    @SequenceGenerator(name = "transactionSequence", sequenceName = "transaction_sequence", allocationSize = 1)
     @Id
-    @GeneratedValue(generator = "transactionSequenceGenerator")
     private long id;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)

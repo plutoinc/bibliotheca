@@ -12,8 +12,9 @@ import javax.persistence.*;
 @Entity
 public class Comment extends BaseEntity {
 
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "commentSequence")
+    @SequenceGenerator(name = "commentSequence", sequenceName = "comment_sequence", allocationSize = 1)
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long commentId;
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)

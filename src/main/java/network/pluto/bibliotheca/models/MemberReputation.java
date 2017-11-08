@@ -12,8 +12,9 @@ import javax.persistence.*;
 @Entity
 public class MemberReputation extends BaseEntity {
 
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "memberReputationSequence")
+    @SequenceGenerator(name = "memberReputationSequence", sequenceName = "member_reputation_sequence", allocationSize = 1)
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)

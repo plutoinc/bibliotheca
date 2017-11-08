@@ -51,7 +51,7 @@ public class Member extends BaseEntity {
     @Column(nullable = false)
     private long reputation = 0;
 
-    public void increaseReputation(long point) {
+    public void changeReputation(long point) {
         reputation += point;
     }
 }

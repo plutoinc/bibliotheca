@@ -3,6 +3,7 @@ package network.pluto.bibliotheca.models;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import network.pluto.bibliotheca.enums.ReputationChangeReason;
 
 import javax.persistence.*;
 
@@ -20,4 +21,11 @@ public class MemberReputation extends BaseEntity {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private ReputationChangeReason reason;
+
+    @Column(nullable = false)
+    private long delta = 0;
 }

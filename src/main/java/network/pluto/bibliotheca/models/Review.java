@@ -13,11 +13,12 @@ import java.util.List;
 @Setter
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "MEMBER_ID", "ARTICLE_ID" }))
 @Entity
-public class Evaluation extends BaseEntity {
+public class Review extends BaseEntity {
 
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reviewSequence")
+    @SequenceGenerator(name = "reviewSequence", sequenceName = "review_sequence", allocationSize = 1)
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long evaluationId;
+    private long id;
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "MEMBER_ID")
@@ -29,12 +30,12 @@ public class Evaluation extends BaseEntity {
 
     @Column
     @Embedded
-    private EvaluationPoint point;
+    private ReviewPoint point;
 
     @Column(nullable = false)
     private int vote = 0;
 
-    @OneToMany(mappedBy = "evaluation", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "review", fetch = FetchType.LAZY)
     private List<Comment> comments = new ArrayList<>();
 
     @Column(nullable = false)

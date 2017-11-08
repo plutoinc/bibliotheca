@@ -11,7 +11,7 @@ import javax.persistence.Embeddable;
 @Getter
 @Setter
 @Embeddable
-public class EvaluationPoint {
+public class ReviewPoint {
 
     @Column(nullable = false)
     private double total;
@@ -27,18 +27,6 @@ public class EvaluationPoint {
 
     @Column(nullable = false)
     private int organization;
-
-    @Column
-    private String originalityComment;
-
-    @Column
-    private String significanceComment;
-
-    @Column
-    private String validityComment;
-
-    @Column
-    private String organizationComment;
 
     @Column
     private String review;

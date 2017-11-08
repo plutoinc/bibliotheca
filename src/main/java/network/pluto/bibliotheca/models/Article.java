@@ -12,15 +12,16 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@ToString(exclude = { "createdBy", "authors", "evaluations" })
+@ToString(exclude = { "createdBy", "authors", "reviews" })
 @Getter
 @Setter
 @Entity
 public class Article extends BaseEntity {
 
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "articleSequence")
+    @SequenceGenerator(name = "articleSequence", sequenceName = "article_sequence", allocationSize = 1)
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long articleId;
+    private long id;
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "MEMBER_ID")
@@ -68,12 +69,12 @@ public class Article extends BaseEntity {
     private LocalDateTime articleUpdatedAt;
 
     @OneToMany(mappedBy = "article", fetch = FetchType.LAZY)
-    private List<Evaluation> evaluations = new ArrayList<>();
+    private List<Review> reviews = new ArrayList<>();
 
     @Column(nullable = false)
-    private int evaluationSize = 0;
+    private int reviewSize = 0;
 
-    public void increaseEvaluationSize() {
-        ++evaluationSize;
+    public void increaseReviewSize() {
+        ++reviewSize;
     }
 }

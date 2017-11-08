@@ -15,9 +15,10 @@ import java.util.List;
 @Entity
 public class Author extends BaseEntity {
 
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "authorSequence")
+    @SequenceGenerator(name = "authorSequence", sequenceName = "author_sequence", allocationSize = 1)
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long authorId;
+    private long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "MEMBER_ID")

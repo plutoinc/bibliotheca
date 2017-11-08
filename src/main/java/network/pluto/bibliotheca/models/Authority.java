@@ -18,7 +18,7 @@ public class Authority extends BaseEntity implements GrantedAuthority {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "authoritySequence")
     @SequenceGenerator(name = "authoritySequence", sequenceName = "authority_sequence", allocationSize = 1)
     @Id
-    private long authorityId;
+    private long id;
 
     @JsonIgnore
     @Column(nullable = false, unique = true)

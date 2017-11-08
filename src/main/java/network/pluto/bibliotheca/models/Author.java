@@ -18,7 +18,7 @@ public class Author extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "authorSequence")
     @SequenceGenerator(name = "authorSequence", sequenceName = "author_sequence", allocationSize = 1)
     @Id
-    private long authorId;
+    private long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "MEMBER_ID")

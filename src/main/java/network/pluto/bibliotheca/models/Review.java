@@ -18,7 +18,7 @@ public class Review extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reviewSequence")
     @SequenceGenerator(name = "reviewSequence", sequenceName = "review_sequence", allocationSize = 1)
     @Id
-    private long reviewId;
+    private long id;
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "MEMBER_ID")

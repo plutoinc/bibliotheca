@@ -16,7 +16,7 @@ public class Wallet extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "walletSequence")
     @SequenceGenerator(name = "walletSequence", sequenceName = "wallet_sequence", allocationSize = 1)
     @Id
-    private Long walletId;
+    private Long id;
 
     @Column
     private String address;

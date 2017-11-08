@@ -21,7 +21,7 @@ public class Article extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "articleSequence")
     @SequenceGenerator(name = "articleSequence", sequenceName = "article_sequence", allocationSize = 1)
     @Id
-    private long articleId;
+    private long id;
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "MEMBER_ID")

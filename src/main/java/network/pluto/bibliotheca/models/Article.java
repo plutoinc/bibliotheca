@@ -77,4 +77,8 @@ public class Article extends BaseEntity {
     public void increaseReviewSize() {
         ++reviewSize;
     }
+
+    public void decreaseReviewSize() {
+        --reviewSize;
+    }
 }

@@ -45,6 +45,10 @@ public class Review extends BaseEntity {
         ++vote;
     }
 
+    public void decreaseVote() {
+        --vote;
+    }
+
     public void increaseCommentSize() {
         ++commentSize;
     }

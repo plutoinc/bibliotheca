@@ -3,9 +3,11 @@ package network.pluto.bibliotheca.models;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.Lob;
 
 @ToString
 @Getter
@@ -28,6 +30,8 @@ public class ReviewPoint {
     @Column(nullable = false)
     private int organization;
 
+    @Type(type = "text")
+    @Lob
     @Column
     private String review;
 

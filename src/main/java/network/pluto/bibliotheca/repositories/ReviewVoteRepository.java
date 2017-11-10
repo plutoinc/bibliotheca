@@ -10,4 +10,6 @@ import java.util.List;
 public interface ReviewVoteRepository extends JpaRepository<ReviewVote, Long> {
     boolean existsByMemberAndReview(Member member, Review review);
     List<ReviewVote> findByMemberAndReviewIn(Member member, List<Review> reviews);
+    void deleteByMemberAndReview(Member member, Review review);
+    void deleteByReview(Review review);
 }

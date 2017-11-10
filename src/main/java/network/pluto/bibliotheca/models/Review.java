@@ -35,7 +35,7 @@ public class Review extends BaseEntity {
     @Column(nullable = false)
     private int vote = 0;
 
-    @OneToMany(mappedBy = "review", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "review", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
 
     @Column(nullable = false)
@@ -43,6 +43,10 @@ public class Review extends BaseEntity {
 
     public void increaseVote() {
         ++vote;
+    }
+
+    public void decreaseVote() {
+        --vote;
     }
 
     public void increaseCommentSize() {

@@ -3,6 +3,7 @@ package network.pluto.bibliotheca.models;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 
@@ -25,6 +26,8 @@ public class Comment extends BaseEntity {
     @JoinColumn(name = "REVIEW_ID")
     private Review review;
 
+    @Type(type = "text")
+    @Lob
     @Column(nullable = false)
     private String comment;
 }

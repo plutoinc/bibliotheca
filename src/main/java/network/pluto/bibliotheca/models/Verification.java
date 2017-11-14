@@ -13,8 +13,8 @@ import javax.persistence.*;
 @Entity
 public class Verification extends BaseEntity {
 
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "articleSequence")
-    @SequenceGenerator(name = "articleSequence", sequenceName = "article_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "verificationSequence")
+    @SequenceGenerator(name = "verificationSequence", sequenceName = "verification_sequence", allocationSize = 1)
     @Id
     private long id;
 

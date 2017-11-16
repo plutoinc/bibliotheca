@@ -21,4 +21,7 @@ public class Orcid extends BaseEntity {
 
     @Column
     private String name;
+
+    @Column(nullable = false)
+    private String accessToken;
 }

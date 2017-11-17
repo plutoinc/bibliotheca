@@ -3,9 +3,11 @@ package network.pluto.bibliotheca.models;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
+@ToString(exclude = { "member" })
 @Getter
 @Setter
 @Entity
@@ -24,4 +26,8 @@ public class Orcid extends BaseEntity {
 
     @Column(nullable = false)
     private String accessToken;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MEMBER_ID", unique = true)
+    private Member member;
 }

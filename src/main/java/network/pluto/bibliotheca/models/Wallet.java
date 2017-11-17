@@ -22,7 +22,7 @@ public class Wallet extends BaseEntity {
     private String address;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MEMBER_ID", unique = true)
+    @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
     @Column(nullable = false, columnDefinition = "varchar(255) default 'INVALID'")

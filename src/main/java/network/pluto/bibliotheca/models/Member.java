@@ -8,7 +8,7 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.util.List;
 
-@ToString(exclude = { "authorities", "wallet" })
+@ToString(exclude = { "authorities", "wallet", "orcid" })
 @Getter
 @Setter
 @Entity
@@ -47,6 +47,9 @@ public class Member extends BaseEntity {
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "member")
     private Wallet wallet;
+
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "member")
+    private Orcid orcid;
 
     @Column(nullable = false)
     private long reputation = 0;

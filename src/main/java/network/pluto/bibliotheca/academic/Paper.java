@@ -8,7 +8,6 @@ import javax.persistence.*;
 
 @Getter
 @Setter
-@Table(name = "mag_paper")
 @Entity
 public class Paper {
 
@@ -28,18 +27,13 @@ public class Paper {
     @Column(nullable = false)
     private int year;
 
-    @Column
-    private Integer nCitation;
+    @Column(name = "n_citation")
+    private Integer citation;
 
     @Type(type = "text")
     @Lob
     @Column(name = "abstract")
     private String paperAbstract;
-
-    @Type(type = "text")
-    @Lob
-    @Column
-    private String urls;
 
     @Column
     private String lang;
@@ -48,18 +42,10 @@ public class Paper {
     private String doi;
 
     @Column
-    private String docType;
-
-    @Type(type = "text")
-    @Lob
-    @Column
-    private String journalName;
-
-    @Column
-    private Integer journalId;
-
-    @Column
     private String publisher;
+
+    @Column
+    private String venue;
 
     @Column
     private Integer volume;

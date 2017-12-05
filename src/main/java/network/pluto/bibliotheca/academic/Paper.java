@@ -5,6 +5,8 @@ import lombok.Setter;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -58,4 +60,13 @@ public class Paper {
 
     @Column
     private String pageEnd;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "REL_PAPER_FOS",
+            joinColumns = @JoinColumn(name = "PAPER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "FOS_ID"))
+    private List<Fos> fosList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "paper", fetch = FetchType.LAZY)
+    private List<PaperAuthor> authors = new ArrayList<>();
 }

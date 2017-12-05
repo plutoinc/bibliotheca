@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import network.pluto.bibliotheca.enums.AuthorType;
+import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ public class Author extends BaseEntity {
     @Column
     private String major;
 
+    @BatchSize(size = 10)
     @ManyToMany(mappedBy = "authors", fetch = FetchType.LAZY)
     private List<Article> articles = new ArrayList<>();
 }

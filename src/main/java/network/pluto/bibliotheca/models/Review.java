@@ -3,6 +3,7 @@ package network.pluto.bibliotheca.models;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ public class Review extends BaseEntity {
     @Column(nullable = false)
     private int vote = 0;
 
+    @BatchSize(size = 10)
     @OneToMany(mappedBy = "review", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
 

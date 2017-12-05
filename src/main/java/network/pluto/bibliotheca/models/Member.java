@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
 import java.util.List;
@@ -26,6 +27,7 @@ public class Member extends BaseEntity {
     @Column(nullable = false)
     private String password;
 
+    @BatchSize(size = 5)
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "REL_MEMBER_AUTHORITY",

@@ -2,12 +2,15 @@ package network.pluto.bibliotheca.academic;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@ToString(exclude = { "fosList", "authors" })
 @Getter
 @Setter
 @Entity
@@ -61,12 +64,14 @@ public class Paper {
     @Column
     private String pageEnd;
 
+    @BatchSize(size = 10)
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "REL_PAPER_FOS",
             joinColumns = @JoinColumn(name = "PAPER_ID"),
             inverseJoinColumns = @JoinColumn(name = "FOS_ID"))
     private List<Fos> fosList = new ArrayList<>();
 
+    @BatchSize(size = 10)
     @OneToMany(mappedBy = "paper", fetch = FetchType.LAZY)
     private List<PaperAuthor> authors = new ArrayList<>();
 }

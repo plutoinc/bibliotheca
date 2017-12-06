@@ -66,6 +66,7 @@ public class Paper {
     @Column
     private String pageEnd;
 
+    @LazyCollection(LazyCollectionOption.EXTRA)
     @BatchSize(size = 10)
     @OneToMany(mappedBy = "paper")
     private List<PaperAuthor> authors = new ArrayList<>();
@@ -75,6 +76,7 @@ public class Paper {
     @OneToMany(mappedBy = "paper")
     private List<PaperKeyword> keywords = new ArrayList<>();
 
+    @LazyCollection(LazyCollectionOption.EXTRA)
     @BatchSize(size = 10)
     @ManyToMany
     @JoinTable(name = "REL_PAPER_FOS",
@@ -82,6 +84,12 @@ public class Paper {
             inverseJoinColumns = @JoinColumn(name = "FOS_ID"))
     private List<Fos> fosList = new ArrayList<>();
 
+    @LazyCollection(LazyCollectionOption.EXTRA)
+    @BatchSize(size = 10)
+    @OneToMany(mappedBy = "paper")
+    private List<PaperUrl> urls = new ArrayList<>();
+
+    @LazyCollection(LazyCollectionOption.EXTRA)
     @BatchSize(size = 10)
     @OneToMany(mappedBy = "paper", cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();

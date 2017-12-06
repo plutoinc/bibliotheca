@@ -27,8 +27,8 @@ public class Member extends BaseEntity {
     @Column(nullable = false)
     private String password;
 
-    @BatchSize(size = 5)
     @JsonIgnore
+    @BatchSize(size = 10)
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "REL_MEMBER_AUTHORITY",
             joinColumns = @JoinColumn(name = "MEMBER_ID"),

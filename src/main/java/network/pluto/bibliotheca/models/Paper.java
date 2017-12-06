@@ -12,7 +12,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@ToString(exclude = { "fosList", "authors" })
+@ToString(exclude = { "authors", "keywords", "fosList", "urls", "comments" })
 @Getter
 @Setter
 @Entity

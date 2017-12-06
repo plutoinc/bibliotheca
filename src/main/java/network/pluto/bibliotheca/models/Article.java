@@ -6,6 +6,8 @@ import lombok.ToString;
 import network.pluto.bibliotheca.enums.ArticleSource;
 import network.pluto.bibliotheca.enums.ArticleType;
 import org.hibernate.annotations.BatchSize;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -32,6 +34,7 @@ public class Article extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private ArticleType type;
 
+    @LazyCollection(LazyCollectionOption.EXTRA)
     @BatchSize(size = 10)
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "REL_ARTICLE_AUTHOR",
@@ -70,6 +73,7 @@ public class Article extends BaseEntity {
     @Column
     private LocalDateTime articleUpdatedAt;
 
+    @LazyCollection(LazyCollectionOption.EXTRA)
     @BatchSize(size = 10)
     @OneToMany(mappedBy = "article", fetch = FetchType.LAZY)
     private List<Review> reviews = new ArrayList<>();

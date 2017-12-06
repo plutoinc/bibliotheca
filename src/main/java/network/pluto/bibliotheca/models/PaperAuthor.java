@@ -13,18 +13,18 @@ import javax.persistence.*;
 @Entity
 public class PaperAuthor {
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PAPER_ID")
     @Id
     private Paper paper;
 
     @Id
-    @Column(name = "ord")
+    @Column(name = "ORD")
     private int order;
 
     @Column
     private String name;
 
-    @Column(name = "org")
+    @Column(name = "ORG")
     private String organization;
 }

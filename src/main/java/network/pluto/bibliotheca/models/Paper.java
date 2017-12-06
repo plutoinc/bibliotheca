@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.BatchSize;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -32,12 +34,12 @@ public class Paper {
     @Column(nullable = false)
     private Integer year;
 
-    @Column(name = "n_citation")
+    @Column(name = "N_CITATION")
     private Integer citation;
 
     @Type(type = "text")
     @Lob
-    @Column(name = "abstract")
+    @Column(name = "ABSTRACT")
     private String paperAbstract;
 
     @Column
@@ -65,15 +67,20 @@ public class Paper {
     private String pageEnd;
 
     @BatchSize(size = 10)
+    @OneToMany(mappedBy = "paper")
+    private List<PaperAuthor> authors = new ArrayList<>();
+
+    @LazyCollection(LazyCollectionOption.EXTRA)
+    @BatchSize(size = 10)
+    @OneToMany(mappedBy = "paper")
+    private List<PaperKeyword> keywords = new ArrayList<>();
+
+    @BatchSize(size = 10)
     @ManyToMany
     @JoinTable(name = "REL_PAPER_FOS",
             joinColumns = @JoinColumn(name = "PAPER_ID"),
             inverseJoinColumns = @JoinColumn(name = "FOS_ID"))
     private List<Fos> fosList = new ArrayList<>();
-
-    @BatchSize(size = 10)
-    @OneToMany(mappedBy = "paper")
-    private List<PaperAuthor> authors = new ArrayList<>();
 
     @BatchSize(size = 10)
     @OneToMany(mappedBy = "paper", cascade = CascadeType.ALL)

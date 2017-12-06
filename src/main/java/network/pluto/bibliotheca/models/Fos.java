@@ -1,4 +1,4 @@
-package network.pluto.bibliotheca.academic;
+package network.pluto.bibliotheca.models;
 
 import lombok.Getter;
 import lombok.Setter;

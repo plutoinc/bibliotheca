@@ -1,4 +1,4 @@
-package network.pluto.bibliotheca.academic;
+package network.pluto.bibliotheca.models;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -11,5 +11,5 @@ import java.io.Serializable;
 @Setter
 public class PaperAuthorId implements Serializable {
     private long paper;
-    private int ord;
+    private int order;
 }

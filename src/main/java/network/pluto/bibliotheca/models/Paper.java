@@ -1,4 +1,4 @@
-package network.pluto.bibliotheca.academic;
+package network.pluto.bibliotheca.models;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -21,7 +21,7 @@ public class Paper {
     @Id
     private long id;
 
-    @Column(nullable = false)
+    @Column
     private String magId;
 
     @Type(type = "text")
@@ -30,7 +30,7 @@ public class Paper {
     private String title;
 
     @Column(nullable = false)
-    private int year;
+    private Integer year;
 
     @Column(name = "n_citation")
     private Integer citation;
@@ -65,13 +65,17 @@ public class Paper {
     private String pageEnd;
 
     @BatchSize(size = 10)
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     @JoinTable(name = "REL_PAPER_FOS",
             joinColumns = @JoinColumn(name = "PAPER_ID"),
             inverseJoinColumns = @JoinColumn(name = "FOS_ID"))
     private List<Fos> fosList = new ArrayList<>();
 
     @BatchSize(size = 10)
-    @OneToMany(mappedBy = "paper", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "paper")
     private List<PaperAuthor> authors = new ArrayList<>();
+
+    @BatchSize(size = 10)
+    @OneToMany(mappedBy = "paper", cascade = CascadeType.ALL)
+    private List<Comment> comments = new ArrayList<>();
 }

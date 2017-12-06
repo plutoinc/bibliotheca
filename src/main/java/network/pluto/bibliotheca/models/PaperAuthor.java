@@ -1,4 +1,4 @@
-package network.pluto.bibliotheca.academic;
+package network.pluto.bibliotheca.models;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -19,11 +19,12 @@ public class PaperAuthor {
     private Paper paper;
 
     @Id
-    private int ord;
+    @Column(name = "ord")
+    private int order;
 
     @Column
     private String name;
 
-    @Column
-    private String org;
+    @Column(name = "org")
+    private String organization;
 }

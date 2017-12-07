@@ -35,7 +35,7 @@ public class Paper {
     private Integer year;
 
     @Column(name = "N_CITATION")
-    private Integer citation;
+    private Integer citedCount;
 
     @Type(type = "text")
     @Lob

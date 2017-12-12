@@ -50,9 +50,6 @@ public class Member extends BaseEntity {
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "member")
     private Wallet wallet;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "member")
-    private Orcid orcid;
-
     @Column(nullable = false)
     private long reputation = 0;
 

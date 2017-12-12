@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
 import java.util.List;
@@ -27,6 +28,7 @@ public class Member extends BaseEntity {
     private String password;
 
     @JsonIgnore
+    @BatchSize(size = 10)
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "REL_MEMBER_AUTHORITY",
             joinColumns = @JoinColumn(name = "MEMBER_ID"),
@@ -47,9 +49,6 @@ public class Member extends BaseEntity {
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "member")
     private Wallet wallet;
-
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "member")
-    private Orcid orcid;
 
     @Column(nullable = false)
     private long reputation = 0;

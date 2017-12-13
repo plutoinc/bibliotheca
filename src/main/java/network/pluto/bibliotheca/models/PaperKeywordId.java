@@ -11,5 +11,5 @@ import java.io.Serializable;
 @Setter
 public class PaperKeywordId implements Serializable {
     private long paper;
-    private long keyword;
+    private String keyword;
 }

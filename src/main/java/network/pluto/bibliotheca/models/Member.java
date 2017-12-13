@@ -9,7 +9,7 @@ import org.hibernate.annotations.BatchSize;
 import javax.persistence.*;
 import java.util.List;
 
-@ToString(exclude = { "authorities", "wallet", "orcid" })
+@ToString(exclude = { "authorities", "wallet" })
 @Getter
 @Setter
 @Entity

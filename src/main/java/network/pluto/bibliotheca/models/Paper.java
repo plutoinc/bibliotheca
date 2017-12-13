@@ -31,7 +31,7 @@ public class Paper {
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false)
+    @Column
     private Integer year;
 
     @Column(name = "N_CITATION")
@@ -45,20 +45,26 @@ public class Paper {
     @Column
     private String lang;
 
+    @Type(type = "text")
+    @Lob
     @Column
     private String doi;
 
+    @Type(type = "text")
+    @Lob
     @Column
     private String publisher;
 
+    @Type(type = "text")
+    @Lob
     @Column
     private String venue;
 
     @Column
-    private Integer volume;
+    private String volume;
 
     @Column
-    private Integer issue;
+    private String issue;
 
     @Column
     private String pageStart;

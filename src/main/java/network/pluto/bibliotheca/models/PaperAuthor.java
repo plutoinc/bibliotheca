@@ -22,7 +22,7 @@ public class PaperAuthor {
     @Column(name = "ORD")
     private int order;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
     @Column(name = "ORG")

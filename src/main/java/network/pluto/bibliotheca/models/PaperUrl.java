@@ -3,7 +3,6 @@ package network.pluto.bibliotheca.models;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 
@@ -20,8 +19,6 @@ public class PaperUrl {
     @JoinColumn(name = "PAPER_ID")
     private Paper paper;
 
-    @Type(type = "text")
-    @Lob
     @Column(nullable = false)
     private String url;
 }

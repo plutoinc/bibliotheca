@@ -24,7 +24,7 @@ public class Member extends BaseEntity {
     private String email;
 
     @JsonIgnore
-    @Column(nullable = false)
+    @Column
     private String password;
 
     @JsonIgnore

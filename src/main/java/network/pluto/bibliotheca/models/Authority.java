@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import network.pluto.bibliotheca.enums.AuthorityName;
-import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 
@@ -13,7 +12,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-public class Authority extends BaseEntity implements GrantedAuthority {
+public class Authority extends BaseEntity {
 
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "authoritySequence")
     @SequenceGenerator(name = "authoritySequence", sequenceName = "authority_sequence", allocationSize = 1)
@@ -24,9 +23,4 @@ public class Authority extends BaseEntity implements GrantedAuthority {
     @Column(nullable = false, unique = true)
     @Enumerated(EnumType.STRING)
     private AuthorityName name;
-
-    @Override
-    public String getAuthority() {
-        return name.name();
-    }
 }

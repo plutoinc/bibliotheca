@@ -7,6 +7,7 @@ import lombok.ToString;
 import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @ToString(exclude = { "authorities", "wallet" })
@@ -33,7 +34,7 @@ public class Member extends BaseEntity {
     @JoinTable(name = "REL_MEMBER_AUTHORITY",
             joinColumns = @JoinColumn(name = "MEMBER_ID"),
             inverseJoinColumns = @JoinColumn(name = "AUTHORITY_ID"))
-    private List<Authority> authorities;
+    private List<Authority> authorities = new ArrayList<>();
 
     @Column(nullable = false)
     private String name;
@@ -47,8 +48,9 @@ public class Member extends BaseEntity {
     @Column
     private String major;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "member")
-    private Wallet wallet;
+    // avoid unnecessary query
+//    @OneToOne(fetch = FetchType.LAZY, mappedBy = "member")
+//    private Wallet wallet;
 
     @Column(nullable = false)
     private long reputation = 0;

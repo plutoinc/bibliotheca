@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Entity
 public class PaperKeyword {
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "PAPER_ID")
     @Id
     private Paper paper;

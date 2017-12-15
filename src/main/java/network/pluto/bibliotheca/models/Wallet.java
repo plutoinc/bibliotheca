@@ -21,7 +21,7 @@ public class Wallet extends BaseEntity {
     @Column
     private String address;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
@@ -29,7 +29,7 @@ public class Wallet extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private WalletStatus walletStatus = WalletStatus.INVALID;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "TRANSACTION_ID")
     private Transaction transaction;
 }

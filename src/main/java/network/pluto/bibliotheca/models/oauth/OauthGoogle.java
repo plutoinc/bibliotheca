@@ -30,6 +30,9 @@ public class OauthGoogle extends BaseEntity {
     @Column(nullable = false)
     private String accessToken;
 
+    @Column(nullable = false)
+    private boolean connected = false;
+
     @Transient
     private Map<String, Object> userData;
 

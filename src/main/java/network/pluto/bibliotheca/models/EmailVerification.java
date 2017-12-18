@@ -22,6 +22,6 @@ public class EmailVerification extends BaseEntity {
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
-    @Column
+    @Column(nullable = false, unique = true)
     private String token;
 }

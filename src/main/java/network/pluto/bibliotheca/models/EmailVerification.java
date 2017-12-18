@@ -11,16 +11,17 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-public class Verification extends BaseEntity {
+public class EmailVerification extends BaseEntity {
 
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "verificationSequence")
     @SequenceGenerator(name = "verificationSequence", sequenceName = "verification_sequence", allocationSize = 1)
     @Id
     private long id;
 
-    @Column
-    private String token;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
 
     @Column
-    private long memberId;
+    private String token;
 }

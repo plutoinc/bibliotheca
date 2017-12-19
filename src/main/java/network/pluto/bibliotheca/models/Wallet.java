@@ -7,7 +7,7 @@ import network.pluto.bibliotheca.enums.WalletStatus;
 
 import javax.persistence.*;
 
-@ToString(exclude = { "member", "transaction" })
+@ToString(exclude = { "member" })
 @Getter
 @Setter
 @Entity
@@ -21,15 +21,11 @@ public class Wallet extends BaseEntity {
     @Column
     private String address;
 
-    @OneToOne(optional = false, fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
-    @Column(nullable = false, columnDefinition = "varchar(255) default 'INVALID'")
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private WalletStatus walletStatus = WalletStatus.INVALID;
-
-    @OneToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "TRANSACTION_ID")
-    private Transaction transaction;
 }

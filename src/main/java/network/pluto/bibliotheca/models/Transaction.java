@@ -22,9 +22,9 @@ public class Transaction {
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
-    @Column(nullable = false, columnDefinition = "varchar(32) default 'TX_REQUESTED'")
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private TransactionStatus transactionStatus;
+    private TransactionStatus transactionStatus = TransactionStatus.TX_REQUESTED;
 
     @Column
     private String transactionData;

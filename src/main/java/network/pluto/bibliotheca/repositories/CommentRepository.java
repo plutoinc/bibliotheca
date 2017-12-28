@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CommentRepository extends JpaRepository<Comment, Long> {
     Page<Comment> findByReview(Review review, Pageable pageable);
-    Page<Comment> findByPaper(Paper paper, Pageable pageable);
+    Page<Comment> findByPaperOrderByIdDesc(Paper paper, Pageable pageable);
     long countByCreatedBy(Member createdBy);
     long countByPaper(Paper paper);
 }

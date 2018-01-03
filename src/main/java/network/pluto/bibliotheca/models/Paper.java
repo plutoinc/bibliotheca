@@ -72,6 +72,10 @@ public class Paper {
     @Column
     private String pageEnd;
 
+    @OneToOne
+    @JoinColumn(name = "JOURNAL_ID")
+    private Journal journal;
+
     @LazyCollection(LazyCollectionOption.EXTRA)
     @BatchSize(size = 10)
     @OneToMany(mappedBy = "paper")

@@ -26,9 +26,12 @@ public class Comment extends BaseEntity {
     @JoinColumn(name = "REVIEW_ID")
     private Review review;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PAPER_ID")
     private Paper paper;
+
+    @Column
+    private Long cognitivePaperId;
 
     @Type(type = "text")
     @Lob

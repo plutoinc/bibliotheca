@@ -12,7 +12,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@ToString(exclude = { "authors", "keywords", "fosList", "urls", "comments" })
+@ToString(exclude = { "journal", "authors", "keywords", "fosList", "urls", "comments" })
 @Getter
 @Setter
 @Entity
@@ -72,7 +72,7 @@ public class Paper {
     @Column
     private String pageEnd;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "JOURNAL_ID")
     private Journal journal;
 

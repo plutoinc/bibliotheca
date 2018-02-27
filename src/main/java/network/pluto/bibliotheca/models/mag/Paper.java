@@ -1,8 +1,13 @@
 package network.pluto.bibliotheca.models.mag;
 
 import lombok.Getter;
+import org.hibernate.annotations.BatchSize;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Table(schema = "mcsa", name = "paper")
@@ -39,14 +44,16 @@ public class Paper {
     @Column
     private String publisher;
 
-    @JoinColumn(name = "journal_id")
     @ManyToOne
+    @JoinColumn(name = "journal_id")
     private Journal journal;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "conference_series_id")
     private ConferenceSeries conferenceSeries;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "conference_instance_id")
     private ConferenceInstance conferenceInstance;
 
     @Column
@@ -69,5 +76,26 @@ public class Paper {
 
     @Column
     private Integer estimatedCitation;
+
+    @OneToOne(mappedBy = "paper")
+    private PaperAbstract paperAbstract;
+
+    @LazyCollection(LazyCollectionOption.EXTRA)
+    @BatchSize(size = 10)
+    @ManyToMany
+    @JoinTable(schema = "mcsa", name = "rel_paper_fields_of_study",
+            joinColumns = @JoinColumn(name = "paper_id"),
+            inverseJoinColumns = @JoinColumn(name = "fos_id"))
+    private List<FieldsOfStudy> fosList = new ArrayList<>();
+
+    @LazyCollection(LazyCollectionOption.EXTRA)
+    @BatchSize(size = 10)
+    @OneToMany(mappedBy = "paper")
+    private List<PaperLanguage> paperLanguages = new ArrayList<>();
+
+    @LazyCollection(LazyCollectionOption.EXTRA)
+    @BatchSize(size = 10)
+    @OneToMany(mappedBy = "paper")
+    private List<PaperUrl> paperUrls = new ArrayList<>();
 
 }

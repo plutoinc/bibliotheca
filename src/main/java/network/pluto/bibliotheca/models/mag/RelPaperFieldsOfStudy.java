@@ -14,9 +14,11 @@ import java.io.Serializable;
 public class RelPaperFieldsOfStudy {
 
     @Id
+    @Column(name = "paper_id")
     private long paperId;
 
     @Id
+    @Column(name = "fos_id")
     private long fosId;
 
     @Column

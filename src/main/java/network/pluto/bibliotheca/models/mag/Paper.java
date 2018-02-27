@@ -82,11 +82,13 @@ public class Paper {
 
     @LazyCollection(LazyCollectionOption.EXTRA)
     @BatchSize(size = 10)
-    @ManyToMany
-    @JoinTable(schema = "mcsa", name = "rel_paper_fields_of_study",
-            joinColumns = @JoinColumn(name = "paper_id"),
-            inverseJoinColumns = @JoinColumn(name = "fos_id"))
-    private List<FieldsOfStudy> fosList = new ArrayList<>();
+    @OneToMany(mappedBy = "paper")
+    private List<PaperAuthorAffiliation> paperAuthorAffiliations = new ArrayList<>();
+
+    @LazyCollection(LazyCollectionOption.EXTRA)
+    @BatchSize(size = 10)
+    @OneToMany(mappedBy = "paper")
+    private List<PaperFieldsOfStudy> paperFosList = new ArrayList<>();
 
     @LazyCollection(LazyCollectionOption.EXTRA)
     @BatchSize(size = 10)

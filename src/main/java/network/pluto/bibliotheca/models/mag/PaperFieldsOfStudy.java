@@ -8,18 +8,22 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Getter
-@IdClass(RelPaperFieldsOfStudy.RelPaperFieldsOfStudyId.class)
 @Table(schema = "mcsa", name = "rel_paper_fields_of_study")
 @Entity
-public class RelPaperFieldsOfStudy {
+public class PaperFieldsOfStudy {
 
-    @Id
-    @Column(name = "paper_id")
-    private long paperId;
+    @EmbeddedId
+    private PaperFieldsOfStudyId id;
 
-    @Id
-    @Column(name = "fos_id")
-    private long fosId;
+    @MapsId("paperId")
+    @ManyToOne
+    @JoinColumn(name = "paper_id")
+    private Paper paper;
+
+    @MapsId("fosId")
+    @ManyToOne
+    @JoinColumn(name = "fos_id")
+    private FieldsOfStudy fieldsOfStudy;
 
     @Column
     private Double similarity;
@@ -27,9 +31,15 @@ public class RelPaperFieldsOfStudy {
     @EqualsAndHashCode
     @Getter
     @Setter
-    public static class RelPaperFieldsOfStudyId implements Serializable {
+    @Embeddable
+    public static class PaperFieldsOfStudyId implements Serializable {
+
+        @Column
         private long paperId;
+
+        @Column
         private long fosId;
+
     }
 
 }

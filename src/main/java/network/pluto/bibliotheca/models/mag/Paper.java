@@ -44,7 +44,7 @@ public class Paper {
     @Column
     private String publisher;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "journal_id")
     private Journal journal;
 
@@ -77,9 +77,6 @@ public class Paper {
     @Column
     private Integer estimatedCitation;
 
-    @OneToOne(mappedBy = "paper")
-    private PaperAbstract paperAbstract;
-
     @LazyCollection(LazyCollectionOption.EXTRA)
     @BatchSize(size = 10)
     @OneToMany(mappedBy = "paper")
@@ -99,5 +96,8 @@ public class Paper {
     @BatchSize(size = 10)
     @OneToMany(mappedBy = "paper")
     private List<PaperUrl> paperUrls = new ArrayList<>();
+
+    @Transient
+    private PaperAbstract paperAbstract;
 
 }

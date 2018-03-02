@@ -1,6 +1,7 @@
 package network.pluto.bibliotheca.models.mag;
 
 import lombok.Getter;
+import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Getter
+@BatchSize(size = 10)
 @Table(schema = "mcsa", name = "journal")
 @Entity(name = "MagJournal")
 public class Journal {

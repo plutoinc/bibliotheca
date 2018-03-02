@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Getter
 @Table(schema = "mcsa", name = "journal")
-@Entity
+@Entity(name = "MagJournal")
 public class Journal {
 
     @Id

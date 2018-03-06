@@ -2,8 +2,6 @@ package network.pluto.bibliotheca.models.mag;
 
 import lombok.Getter;
 import org.hibernate.annotations.BatchSize;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -77,22 +75,23 @@ public class Paper {
     @Column
     private Integer estimatedCitation;
 
-    @LazyCollection(LazyCollectionOption.EXTRA)
+    // TODO @LazyCollection generates a lot of unnecessary "count" queries
+//    @LazyCollection(LazyCollectionOption.EXTRA)
     @BatchSize(size = 10)
     @OneToMany(mappedBy = "paper")
     private List<PaperAuthorAffiliation> paperAuthorAffiliations = new ArrayList<>();
 
-    @LazyCollection(LazyCollectionOption.EXTRA)
+    //    @LazyCollection(LazyCollectionOption.EXTRA)
     @BatchSize(size = 10)
     @OneToMany(mappedBy = "paper")
     private List<PaperFieldsOfStudy> paperFosList = new ArrayList<>();
 
-    @LazyCollection(LazyCollectionOption.EXTRA)
+    //    @LazyCollection(LazyCollectionOption.EXTRA)
     @BatchSize(size = 10)
     @OneToMany(mappedBy = "paper")
     private List<PaperLanguage> paperLanguages = new ArrayList<>();
 
-    @LazyCollection(LazyCollectionOption.EXTRA)
+    //    @LazyCollection(LazyCollectionOption.EXTRA)
     @BatchSize(size = 10)
     @OneToMany(mappedBy = "paper")
     private List<PaperUrl> paperUrls = new ArrayList<>();

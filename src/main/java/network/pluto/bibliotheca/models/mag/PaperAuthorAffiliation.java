@@ -16,12 +16,12 @@ public class PaperAuthorAffiliation {
     private PaperAuthorAffiliationId id;
 
     @MapsId("paperId")
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "paper_id")
     private Paper paper;
 
     @MapsId("authorId")
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "author_id")
     private Author author;
 

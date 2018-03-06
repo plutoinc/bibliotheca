@@ -16,12 +16,12 @@ public class PaperFieldsOfStudy {
     private PaperFieldsOfStudyId id;
 
     @MapsId("paperId")
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "paper_id")
     private Paper paper;
 
     @MapsId("fosId")
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "fos_id")
     private FieldsOfStudy fieldsOfStudy;
 

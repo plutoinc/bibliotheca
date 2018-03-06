@@ -99,4 +99,8 @@ public class Paper {
     @Transient
     private PaperAbstract paperAbstract;
 
+    public void setPaperAbstract(PaperAbstract paperAbstract) {
+        this.paperAbstract = paperAbstract;
+    }
+
 }

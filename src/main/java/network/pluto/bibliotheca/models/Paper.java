@@ -99,8 +99,4 @@ public class Paper {
     @OneToMany(mappedBy = "paper")
     private List<PaperUrl> urls = new ArrayList<>();
 
-    @LazyCollection(LazyCollectionOption.EXTRA)
-    @BatchSize(size = 10)
-    @OneToMany(mappedBy = "paper", cascade = CascadeType.ALL)
-    private List<Comment> comments = new ArrayList<>();
 }

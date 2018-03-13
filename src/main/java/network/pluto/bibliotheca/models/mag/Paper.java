@@ -1,6 +1,7 @@
 package network.pluto.bibliotheca.models.mag;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
+@Setter
 @Table(schema = "mcsa", name = "paper")
 @Entity(name = "MagPaper")
 public class Paper {

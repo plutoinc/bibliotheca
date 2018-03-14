@@ -48,10 +48,6 @@ public class Member extends BaseEntity {
     @Column
     private String major;
 
-    // avoid unnecessary query
-//    @OneToOne(fetch = FetchType.LAZY, mappedBy = "member")
-//    private Wallet wallet;
-
     @Column(nullable = false)
     private long reputation = 0;
 

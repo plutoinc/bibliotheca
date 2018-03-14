@@ -5,14 +5,19 @@ import com.google.common.base.Joiner;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import network.pluto.bibliotheca.utils.JsonUtils;
+import org.hibernate.annotations.BatchSize;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.StringUtils;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.IOException;
 
 @Slf4j
 @Getter
+@BatchSize(size = 10)
 @Table(schema = "mcsa", name = "paper_abstract_inverted_index")
 @Entity
 public class PaperAbstract {
@@ -20,14 +25,8 @@ public class PaperAbstract {
     @Id
     private long paperId;
 
-    @MapsId("paperId")
-    @OneToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "paper_id")
-    private Paper paper;
-
     @Column
     private String invertedAbstract;
-
 
     public String getAbstract() {
         if (!StringUtils.hasText(this.invertedAbstract)) {

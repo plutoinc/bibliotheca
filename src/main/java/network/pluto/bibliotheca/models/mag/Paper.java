@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @Table(schema = "mcsa", name = "paper")
-@Entity(name = "MagPaper")
+@Entity
 public class Paper {
 
     @Id

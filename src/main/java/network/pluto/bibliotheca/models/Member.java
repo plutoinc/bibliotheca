@@ -49,12 +49,6 @@ public class Member extends BaseEntity {
     private String major;
 
     @Column(nullable = false)
-    private long reputation = 0;
-
-    @Column(nullable = false)
     private boolean emailVerified = false;
 
-    public void changeReputation(long point) {
-        reputation += point;
-    }
 }

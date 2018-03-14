@@ -21,7 +21,7 @@ public class ConferenceInstance {
     @Column
     private String displayName;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private ConferenceSeries conferenceSeries;
 
     @Column

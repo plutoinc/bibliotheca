@@ -21,7 +21,7 @@ public class Author {
     @Column
     private String displayName;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Affiliation lastKnownAffiliation;
 
     @Column

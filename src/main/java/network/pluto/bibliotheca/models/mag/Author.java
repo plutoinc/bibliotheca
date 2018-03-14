@@ -21,7 +21,7 @@ public class Author {
     @Column
     private String displayName;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Affiliation lastKnownAffiliation;
 
     @Column
@@ -29,5 +29,9 @@ public class Author {
 
     @Column
     private Long citationCount;
+
+    @OneToOne
+    @JoinColumn(name = "id")
+    private AuthorHIndex authorHIndex;
 
 }

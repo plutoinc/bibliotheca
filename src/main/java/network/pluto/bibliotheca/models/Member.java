@@ -3,14 +3,12 @@ package network.pluto.bibliotheca.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@ToString(exclude = { "authorities" })
 @Getter
 @Setter
 @Entity

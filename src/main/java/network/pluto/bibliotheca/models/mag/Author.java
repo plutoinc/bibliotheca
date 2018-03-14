@@ -30,4 +30,8 @@ public class Author {
     @Column
     private Long citationCount;
 
+    @OneToOne
+    @JoinColumn(name = "id")
+    private AuthorHIndex authorHIndex;
+
 }

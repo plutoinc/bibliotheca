@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@ToString(exclude = { "createdBy", "authors", "reviews" })
+@ToString(exclude = { "createdBy", "authors" })
 @Getter
 @Setter
 @Entity
@@ -73,19 +73,4 @@ public class Article extends BaseEntity {
     @Column
     private LocalDateTime articleUpdatedAt;
 
-    @LazyCollection(LazyCollectionOption.EXTRA)
-    @BatchSize(size = 10)
-    @OneToMany(mappedBy = "article", fetch = FetchType.LAZY)
-    private List<Review> reviews = new ArrayList<>();
-
-    @Column(nullable = false)
-    private int reviewSize = 0;
-
-    public void increaseReviewSize() {
-        ++reviewSize;
-    }
-
-    public void decreaseReviewSize() {
-        --reviewSize;
-    }
 }

@@ -7,7 +7,7 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 
-@ToString(exclude = { "createdBy", "review" })
+@ToString(exclude = { "createdBy" })
 @Getter
 @Setter
 @Entity
@@ -21,10 +21,6 @@ public class Comment extends BaseEntity {
     @ManyToOne(optional = false)
     @JoinColumn(name = "MEMBER_ID")
     private Member createdBy;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "REVIEW_ID")
-    private Review review;
 
     @Column
     private Long paperId;

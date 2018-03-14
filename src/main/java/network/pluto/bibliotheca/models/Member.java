@@ -3,14 +3,12 @@ package network.pluto.bibliotheca.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@ToString(exclude = { "authorities" })
 @Getter
 @Setter
 @Entity
@@ -48,17 +46,7 @@ public class Member extends BaseEntity {
     @Column
     private String major;
 
-    // avoid unnecessary query
-//    @OneToOne(fetch = FetchType.LAZY, mappedBy = "member")
-//    private Wallet wallet;
-
-    @Column(nullable = false)
-    private long reputation = 0;
-
     @Column(nullable = false)
     private boolean emailVerified = false;
 
-    public void changeReputation(long point) {
-        reputation += point;
-    }
 }

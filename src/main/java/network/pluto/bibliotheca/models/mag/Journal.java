@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Getter
 @BatchSize(size = 10)
 @Table(schema = "mcsa", name = "journal")
-@Entity(name = "MagJournal")
+@Entity
 public class Journal {
 
     @Id

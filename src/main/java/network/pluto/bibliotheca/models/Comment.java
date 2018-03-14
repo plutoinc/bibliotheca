@@ -2,12 +2,10 @@ package network.pluto.bibliotheca.models;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 
-@ToString(exclude = { "createdBy", "review", "paper" })
 @Getter
 @Setter
 @Entity
@@ -22,16 +20,8 @@ public class Comment extends BaseEntity {
     @JoinColumn(name = "MEMBER_ID")
     private Member createdBy;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "REVIEW_ID")
-    private Review review;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PAPER_ID")
-    private Paper paper;
-
     @Column
-    private Long cognitivePaperId;
+    private Long paperId;
 
     @Type(type = "text")
     @Lob

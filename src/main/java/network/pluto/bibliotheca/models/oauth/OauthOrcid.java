@@ -3,7 +3,6 @@ package network.pluto.bibliotheca.models.oauth;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 import network.pluto.bibliotheca.models.BaseEntity;
 import network.pluto.bibliotheca.models.Member;
 
@@ -11,7 +10,6 @@ import javax.persistence.*;
 import java.util.Map;
 import java.util.UUID;
 
-@ToString(exclude = { "member" })
 @Getter
 @Setter
 @Entity

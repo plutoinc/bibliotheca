@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Getter
 @Table(schema = "mcsa", name = "author")
-@Entity(name = "MagAuthor")
+@Entity
 public class Author {
 
     @Id

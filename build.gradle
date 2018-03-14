@@ -77,4 +77,4 @@ task generateQueryDSL(type: JavaCompile, group: 'build') {
     destinationDir = generatedSourcesDir
 }
 
-compileJava.dependsOn(generateQueryDSL)
+//compileJava.dependsOn(generateQueryDSL)

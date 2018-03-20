@@ -32,4 +32,7 @@ public class Journal {
     @Column
     private Long citationCount;
 
+    @Column(name = "jcr_if")
+    private Double impactFactor;
+
 }

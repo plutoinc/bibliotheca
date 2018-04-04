@@ -3,8 +3,6 @@ package network.pluto.bibliotheca.models.mag;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.BatchSize;
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -46,11 +44,7 @@ public class Paper {
     @Column
     private String publisher;
 
-    // FIXME @OneToOne generates n+1 select query issue. It should be @OneToOne mapping.
-    @NotFound(action = NotFoundAction.IGNORE)
-    @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId
-    @JoinColumn(name = "id")
+    @Transient
     private PaperAbstract paperAbstract;
 
     @ManyToOne(fetch = FetchType.LAZY)

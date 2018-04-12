@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface BookmarkRepository extends JpaRepository<Bookmark, Bookmark.BookmarkId> {
-    Page<Bookmark> findByMemberId(long memberId, Pageable pageable);
+    Page<Bookmark> findByMemberIdOrderByCreatedAtDesc(long memberId, Pageable pageable);
     List<Bookmark> findByMemberIdAndPaperIdIn(long memberId, List<Long> paperIds);
 }

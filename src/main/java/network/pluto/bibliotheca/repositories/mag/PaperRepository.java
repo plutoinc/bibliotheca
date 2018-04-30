@@ -17,7 +17,7 @@ public interface PaperRepository extends JpaRepository<Paper, Long> {
             "  (" +
             "    select paper_reference_id from mcsa.rel_paper_reference where paper_id = :paperId " +
             "    union " +
-            "    select distinct paper_reference_id from mcsa.rel_paper_reference where paper_id in (select paper_reference_id from mcsa.rel_paper_reference where paper_id = :paperId) " +
+            "    select distinct paper_reference_id from mcsa.rel_paper_reference where paper_id in (select paper_reference_id from mcsa.rel_paper_reference where paper_id = :paperId) and not paper_reference_id = :paperId " +
             "  ) t " +
             "join mcsa.paper p on t.paper_reference_id = p.id " +
             "order by p.citation_count desc " +

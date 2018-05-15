@@ -15,7 +15,6 @@ public class AuthorHIndex {
     @Id
     private long authorId;
 
-
     @Column(name = "hindex")
     private Integer hIndex;
 

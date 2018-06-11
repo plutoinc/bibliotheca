@@ -1,31 +1,10 @@
-buildscript {
-    repositories {
-        mavenCentral()
-        maven { url 'http://repo.spring.io/plugins-release' }
-    }
-    dependencies {
-        classpath 'io.spring.gradle:propdeps-plugin:0.0.9.RELEASE'
-    }
-}
-
-ext {
-    springBootVersion = '1.5.6.RELEASE'
-    generatedSourcesDir = file("${buildDir}/generated")
-}
-
-configure(allprojects) {
-    apply plugin: 'propdeps'
-    apply plugin: 'propdeps-maven'
-    apply plugin: 'propdeps-idea'
-    apply plugin: 'propdeps-eclipse'
+plugins {
+    id 'com.ewerk.gradle.plugins.querydsl' version '1.0.9'
 }
 
 apply plugin: 'java'
-apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'io.spring.dependency-management'
-
-version = '0.0.1-SNAPSHOT'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -34,10 +13,14 @@ repositories {
     mavenCentral()
 }
 
+dependencyManagement {
+    imports {
+        mavenBom('org.springframework.boot:spring-boot-dependencies:1.5.13.RELEASE')
+    }
+}
+
 dependencies {
-    compile('org.springframework.boot:spring-boot-starter')
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
-    compile('org.springframework.boot:spring-boot-starter-security')
 
     compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310')
 
@@ -45,36 +28,18 @@ dependencies {
     compile('com.querydsl:querydsl-apt')
     compile('com.querydsl:querydsl-jpa')
 
-    provided('org.projectlombok:lombok')
-    testCompile('org.springframework.boot:spring-boot-starter-test')
-    testCompile('org.springframework.security:spring-security-test')
-}
-
-dependencyManagement {
-    imports { mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}") }
+    compile('org.projectlombok:lombok')
 }
 
 sourceSets {
     main {
         java {
             srcDir 'src/main/java'
-            srcDir generatedSourcesDir
+            srcDir 'src/querydsl/java'
         }
     }
 }
 
-configurations {
-    provided
+querydsl {
+    jpa = true
 }
-
-task generateQueryDSL(type: JavaCompile, group: 'build') {
-    source = sourceSets.main.java
-    classpath = configurations.compile + configurations.provided
-    options.compilerArgs = [
-            '-proc:only',
-            '-processor', 'com.querydsl.apt.jpa.JPAAnnotationProcessor'
-    ]
-    destinationDir = generatedSourcesDir
-}
-
-//compileJava.dependsOn(generateQueryDSL)

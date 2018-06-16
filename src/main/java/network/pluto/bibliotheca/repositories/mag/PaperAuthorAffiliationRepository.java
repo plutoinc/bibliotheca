@@ -2,7 +2,6 @@ package network.pluto.bibliotheca.repositories.mag;
 
 import network.pluto.bibliotheca.models.mag.Paper;
 import network.pluto.bibliotheca.models.mag.PaperAuthorAffiliation;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,13 +16,13 @@ public interface PaperAuthorAffiliationRepository extends JpaRepository<PaperAut
     List<Paper> getAuthorMainPapers(@Param("paperId") long paperId, @Param("authorId") long authorId, Pageable pageable);
 
     @Query("select r.paper from PaperAuthorAffiliation r join r.paper where r.id.authorId = :authorId order by r.paper.citationCount desc")
-    Page<Paper> getAuthorPapersMostCitations(@Param("authorId") long authorId, Pageable pageable);
+    List<Paper> getAuthorPapersMostCitations(@Param("authorId") long authorId, Pageable pageable);
 
     @Query("select r.paper from PaperAuthorAffiliation r join r.paper where r.id.authorId = :authorId order by r.paper.year desc")
-    Page<Paper> getAuthorPapersNewest(@Param("authorId") long authorId, Pageable pageable);
+    List<Paper> getAuthorPapersNewest(@Param("authorId") long authorId, Pageable pageable);
 
     @Query("select r.paper from PaperAuthorAffiliation r join r.paper where r.id.authorId = :authorId order by r.paper.year asc")
-    Page<Paper> getAuthorPapersOldest(@Param("authorId") long authorId, Pageable pageable);
+    List<Paper> getAuthorPapersOldest(@Param("authorId") long authorId, Pageable pageable);
 
     @Query(value = "select author_id from mcsa.rel_paper_author_affiliation where paper_id in (select paper_id from mcsa.rel_paper_author_affiliation where author_id = :authorId) and not author_id = :authorId group by author_id order by count(author_id) desc limit 5", nativeQuery = true)
     List<BigInteger> findCoAuthors(@Param("authorId") long authorId);

@@ -2,6 +2,7 @@ package network.pluto.bibliotheca.models.mag;
 
 import lombok.Getter;
 import lombok.Setter;
+import network.pluto.bibliotheca.dtos.AuthorDto;
 import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
@@ -82,9 +83,12 @@ public class Paper {
 
     // TODO @LazyCollection generates a lot of unnecessary "count" queries
 //    @LazyCollection(LazyCollectionOption.EXTRA)
-    @BatchSize(size = 10)
-    @OneToMany(mappedBy = "paper")
-    private List<PaperAuthorAffiliation> paperAuthorAffiliations = new ArrayList<>();
+//    @BatchSize(size = 10)
+//    @OneToMany(mappedBy = "paper")
+//    private List<PaperAuthorAffiliation> paperAuthorAffiliations = new ArrayList<>();
+
+    @Transient
+    private List<AuthorDto> authors = new ArrayList<>();
 
     //    @LazyCollection(LazyCollectionOption.EXTRA)
     @BatchSize(size = 10)

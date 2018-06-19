@@ -27,7 +27,7 @@ public class CommentRepositoryImpl extends QueryDslRepositorySupport implements 
                 "from (\n" +
                 "       select\n" +
                 "         c.id, c.comment, c.member_id, c.paper_id, c.created_at, c.updated_at,\n" +
-                "         row_number() over (partition by c.paper_id order by c.updated_at desc) as row,\n" +
+                "         row_number() over (partition by c.paper_id order by c.created_at desc) as row,\n" +
                 "         count(c.paper_id) over (partition by c.paper_id) as total_count\n" +
                 "       from comment c\n" +
                 "       where c.paper_id in (:paperIds)\n" +

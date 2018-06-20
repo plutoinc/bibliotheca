@@ -1,12 +1,14 @@
 package network.pluto.bibliotheca.models.mag;
 
 import lombok.Getter;
+import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+@BatchSize(size = 50)
 @Getter
 @Table(schema = "mcsa", name = "author_hindex")
 @Entity

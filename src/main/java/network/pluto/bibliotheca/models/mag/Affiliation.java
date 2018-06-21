@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Getter
-@BatchSize(size = 10)
+@BatchSize(size = 50)
 @Table(schema = "mcsa", name = "affiliation")
 @Entity
 public class Affiliation {

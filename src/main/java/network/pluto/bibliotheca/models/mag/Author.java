@@ -30,8 +30,8 @@ public class Author {
     @Column
     private Long citationCount;
 
-    @OneToOne
-    @JoinColumn(name = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id", insertable = false, updatable = false)
     private AuthorHIndex authorHIndex;
 
 }

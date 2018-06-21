@@ -6,6 +6,7 @@ import network.pluto.bibliotheca.models.mag.Author;
 import org.springframework.data.jpa.repository.support.QueryDslRepositorySupport;
 
 import java.math.BigInteger;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,7 +58,12 @@ public class AuthorRepositoryImpl extends QueryDslRepositorySupport implements A
 
                     return authorDto;
                 })
-                .collect(Collectors.groupingBy(AuthorDto::getPaperId));
+                .collect(Collectors.collectingAndThen(
+                        Collectors.groupingBy(AuthorDto::getPaperId),
+                        map -> {
+                            map.values().forEach(list -> list.sort(Comparator.comparing(AuthorDto::getOrder)));
+                            return map;
+                        }));
     }
 
 }

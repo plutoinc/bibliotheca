@@ -1,6 +1,8 @@
 package network.pluto.bibliotheca.models.mag;
 
 import lombok.Getter;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 
@@ -30,6 +32,7 @@ public class Author {
     @Column
     private Long citationCount;
 
+    @NotFound(action = NotFoundAction.IGNORE)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id", insertable = false, updatable = false)
     private AuthorHIndex authorHIndex;

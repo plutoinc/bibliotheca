@@ -9,4 +9,5 @@ public interface CollectionPaperRepository extends JpaRepository<CollectionPaper
     List<CollectionPaper> findByIdCollectionId(long collectionId);
     int countByIdCollectionId(long collectionId);
     void deleteByIdCollectionIdAndIdPaperIdIn(long collectionId, List<Long> paperIds);
+    void deleteByIdCollectionId(long collectionId);
 }

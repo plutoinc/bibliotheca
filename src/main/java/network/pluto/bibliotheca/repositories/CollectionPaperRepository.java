@@ -8,4 +8,5 @@ import java.util.List;
 public interface CollectionPaperRepository extends JpaRepository<CollectionPaper, CollectionPaper.CollectionPaperId> {
     List<CollectionPaper> findByIdCollectionId(long collectionId);
     int countByIdCollectionId(long collectionId);
+    void deleteByIdCollectionIdAndIdPaperIdIn(long collectionId, List<Long> paperIds);
 }

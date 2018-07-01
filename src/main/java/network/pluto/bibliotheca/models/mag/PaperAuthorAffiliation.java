@@ -16,16 +16,16 @@ public class PaperAuthorAffiliation {
     private PaperAuthorAffiliationId id;
 
     @MapsId("paperId")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "paper_id")
     private Paper paper;
 
     @MapsId("authorId")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
     private Author author;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "affiliation_id")
     private Affiliation affiliation;
 

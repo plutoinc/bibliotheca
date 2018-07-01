@@ -3,9 +3,10 @@ package network.pluto.bibliotheca.repositories.mag;
 import network.pluto.bibliotheca.dtos.AffiliationDto;
 import network.pluto.bibliotheca.dtos.AuthorDto;
 import network.pluto.bibliotheca.models.mag.Author;
+import network.pluto.bibliotheca.models.mag.PaperAuthorAffiliation;
+import network.pluto.bibliotheca.models.mag.QPaperAuthorAffiliation;
 import org.springframework.data.jpa.repository.support.QueryDslRepositorySupport;
 
-import java.math.BigInteger;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -24,35 +25,27 @@ public class AuthorRepositoryImpl extends QueryDslRepositorySupport implements A
             return new HashMap<>();
         }
 
-        String sql = "select t.paper_id, t.author_sequence_number, a.id as author_id, a.display_name as author_name, ah.hindex, af.id as affiliation_id, af.display_name as affiliation_name from" +
-                " (select paper_id, author_id, affiliation_id, author_sequence_number, row_number() over (partition by paper_id order by author_sequence_number) as row from mcsa.rel_paper_author_affiliation where paper_id in (:paperIds)) t" +
-                " join mcsa.author a on t.author_id = a.id" +
-                " left join mcsa.author_hindex ah on t.author_id = ah.author_id" +
-                " left join mcsa.affiliation af on t.affiliation_id = af.id" +
-                " where t.row < 11";
+        QPaperAuthorAffiliation auAf = QPaperAuthorAffiliation.paperAuthorAffiliation;
+        List<PaperAuthorAffiliation> results = from(auAf)
+                .where(auAf.id.paperId.in(paperIds), auAf.authorSequenceNumber.lt(11))
+                .fetch();
 
-        List<Object[]> results = getEntityManager()
-                .createNativeQuery(sql)
-                .setParameter("paperIds", paperIds)
-                .getResultList();
-
-        return results
-                .stream()
-                .map(t -> {
+        return results.stream()
+                .map(r -> {
                     AuthorDto authorDto = new AuthorDto();
-                    authorDto.setPaperId(((BigInteger) t[0]).longValue());
-                    authorDto.setOrder((Integer) t[1]);
-                    authorDto.setId(((BigInteger) t[2]).longValue());
-                    authorDto.setName((String) t[3]);
+                    authorDto.setPaperId(r.getId().getPaperId());
+                    authorDto.setOrder(r.getAuthorSequenceNumber());
+                    authorDto.setId(r.getId().getAuthorId());
+                    authorDto.setName(r.getAuthor().getDisplayName());
 
-                    if (t[4] != null) {
-                        authorDto.setHIndex((Integer) t[4]);
+                    if (r.getAuthor().getAuthorHIndex() != null) {
+                        authorDto.setHIndex(r.getAuthor().getAuthorHIndex().getHIndex());
                     }
 
-                    if (t[5] != null) {
+                    if (r.getAffiliation() != null) {
                         AffiliationDto affiliationDto = new AffiliationDto();
-                        affiliationDto.setId(((BigInteger) t[5]).longValue());
-                        affiliationDto.setName((String) t[6]);
+                        affiliationDto.setId(r.getAffiliation().getId());
+                        affiliationDto.setName(r.getAffiliation().getDisplayName());
                         authorDto.setAffiliation(affiliationDto);
                     }
 

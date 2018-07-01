@@ -1,11 +1,13 @@
 package network.pluto.bibliotheca.models.mag;
 
 import lombok.Getter;
+import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 
+@BatchSize(size = 50)
 @Getter
 @Table(schema = "mcsa", name = "author")
 @Entity

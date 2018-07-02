@@ -1,5 +1,6 @@
 package network.pluto.bibliotheca.models.mag;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import network.pluto.bibliotheca.dtos.AuthorDto;
@@ -44,9 +45,6 @@ public class Paper {
 
     @Column
     private String publisher;
-
-    @Transient
-    private PaperAbstract paperAbstract;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "journal_id")
@@ -104,5 +102,18 @@ public class Paper {
     @BatchSize(size = 10)
     @OneToMany(mappedBy = "paper")
     private List<PaperUrl> paperUrls = new ArrayList<>();
+
+    // for lazy loading of one-to-one relation
+    @Getter(AccessLevel.PRIVATE)
+    @BatchSize(size = 10)
+    @OneToMany(mappedBy = "paper")
+    private List<PaperAbstract> paperAbstractHolder;
+
+    public PaperAbstract getPaperAbstract() {
+        if (paperAbstractHolder == null || paperAbstractHolder.size() == 0) {
+            return null;
+        }
+        return paperAbstractHolder.get(0);
+    }
 
 }

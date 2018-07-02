@@ -9,10 +9,7 @@ import org.hibernate.annotations.BatchSize;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.StringUtils;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.IOException;
 
 @Slf4j
@@ -27,6 +24,10 @@ public class PaperAbstract {
 
     @Column
     private String invertedAbstract;
+
+    @OneToOne(optional = false, fetch = FetchType.LAZY)
+    @MapsId
+    private Paper paper;
 
     public String getAbstract() {
         if (!StringUtils.hasText(this.invertedAbstract)) {

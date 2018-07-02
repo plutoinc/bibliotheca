@@ -1,11 +1,10 @@
 package network.pluto.bibliotheca.models.mag;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import network.pluto.bibliotheca.dtos.AuthorDto;
 import org.hibernate.annotations.BatchSize;
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -46,11 +45,6 @@ public class Paper {
 
     @Column
     private String publisher;
-
-    @NotFound(action = NotFoundAction.IGNORE)
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id", insertable = false, updatable = false)
-    private PaperAbstract paperAbstract;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "journal_id")
@@ -108,5 +102,18 @@ public class Paper {
     @BatchSize(size = 10)
     @OneToMany(mappedBy = "paper")
     private List<PaperUrl> paperUrls = new ArrayList<>();
+
+    // for lazy loading of one-to-one relation
+    @Getter(AccessLevel.PRIVATE)
+    @BatchSize(size = 10)
+    @OneToMany(mappedBy = "paper")
+    private List<PaperAbstract> paperAbstractHolder;
+
+    public PaperAbstract getPaperAbstract() {
+        if (paperAbstractHolder == null || paperAbstractHolder.size() == 0) {
+            return null;
+        }
+        return paperAbstractHolder.get(0);
+    }
 
 }

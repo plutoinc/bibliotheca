@@ -1,11 +1,11 @@
 package network.pluto.bibliotheca.models.mag;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import org.hibernate.annotations.BatchSize;
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
+import java.util.List;
 
 @BatchSize(size = 50)
 @Getter
@@ -34,9 +34,17 @@ public class Author {
     @Column
     private Long citationCount;
 
-    @NotFound(action = NotFoundAction.IGNORE)
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id", insertable = false, updatable = false)
-    private AuthorHIndex authorHIndex;
+    // for lazy loading of one-to-one relation
+    @Getter(AccessLevel.PRIVATE)
+    @BatchSize(size = 50)
+    @OneToMany(mappedBy = "author")
+    private List<AuthorHIndex> authorHIndexHolder;
+
+    public AuthorHIndex getAuthorHIndex() {
+        if (authorHIndexHolder == null || authorHIndexHolder.size() == 0) {
+            return null;
+        }
+        return authorHIndexHolder.get(0);
+    }
 
 }

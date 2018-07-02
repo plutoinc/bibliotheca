@@ -3,10 +3,7 @@ package network.pluto.bibliotheca.models.mag;
 import lombok.Getter;
 import org.hibernate.annotations.BatchSize;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @BatchSize(size = 50)
 @Getter
@@ -19,5 +16,9 @@ public class AuthorHIndex {
 
     @Column(name = "hindex")
     private Integer hIndex;
+
+    @OneToOne(optional = false, fetch = FetchType.LAZY)
+    @MapsId
+    private Author author;
 
 }

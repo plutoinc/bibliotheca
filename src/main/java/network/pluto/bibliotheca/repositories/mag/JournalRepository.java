@@ -1,4 +1,4 @@
-package network.pluto.bibliotheca.repositories;
+package network.pluto.bibliotheca.repositories.mag;
 
 import network.pluto.bibliotheca.models.mag.Journal;
 import org.springframework.data.jpa.repository.JpaRepository;

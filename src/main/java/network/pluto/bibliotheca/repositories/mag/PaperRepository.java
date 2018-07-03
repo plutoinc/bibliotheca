@@ -8,7 +8,5 @@ import java.util.List;
 
 @Repository
 public interface PaperRepository extends JpaRepository<Paper, Long> {
-
     List<Paper> findByIdIn(List<Long> paperIds);
-
 }

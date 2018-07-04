@@ -1,17 +1,12 @@
 package network.pluto.bibliotheca.repositories.mag;
 
-import network.pluto.bibliotheca.dtos.AffiliationDto;
-import network.pluto.bibliotheca.dtos.AuthorDto;
 import network.pluto.bibliotheca.models.mag.Author;
 import network.pluto.bibliotheca.models.mag.PaperAuthorAffiliation;
 import network.pluto.bibliotheca.models.mag.QPaperAuthorAffiliation;
 import org.springframework.data.jpa.repository.support.QueryDslRepositorySupport;
 
-import java.util.Comparator;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public class AuthorRepositoryImpl extends QueryDslRepositorySupport implements AuthorRepositoryCustom {
 
@@ -20,43 +15,15 @@ public class AuthorRepositoryImpl extends QueryDslRepositorySupport implements A
     }
 
     @Override
-    public Map<Long, List<AuthorDto>> getAuthorsByPaperIdIn(List<Long> paperIds) {
+    public List<PaperAuthorAffiliation> getAuthorsByPaperIdIn(List<Long> paperIds) {
         if (paperIds.isEmpty()) {
-            return new HashMap<>();
+            return new ArrayList<>();
         }
 
         QPaperAuthorAffiliation auAf = QPaperAuthorAffiliation.paperAuthorAffiliation;
-        List<PaperAuthorAffiliation> results = from(auAf)
+        return from(auAf)
                 .where(auAf.id.paperId.in(paperIds), auAf.authorSequenceNumber.lt(11))
                 .fetch();
-
-        return results.stream()
-                .map(r -> {
-                    AuthorDto authorDto = new AuthorDto();
-                    authorDto.setPaperId(r.getId().getPaperId());
-                    authorDto.setOrder(r.getAuthorSequenceNumber());
-                    authorDto.setId(r.getId().getAuthorId());
-                    authorDto.setName(r.getAuthor().getDisplayName());
-
-                    if (r.getAuthor().getAuthorHIndex() != null) {
-                        authorDto.setHIndex(r.getAuthor().getAuthorHIndex().getHIndex());
-                    }
-
-                    if (r.getAffiliation() != null) {
-                        AffiliationDto affiliationDto = new AffiliationDto();
-                        affiliationDto.setId(r.getAffiliation().getId());
-                        affiliationDto.setName(r.getAffiliation().getDisplayName());
-                        authorDto.setAffiliation(affiliationDto);
-                    }
-
-                    return authorDto;
-                })
-                .collect(Collectors.collectingAndThen(
-                        Collectors.groupingBy(AuthorDto::getPaperId),
-                        map -> {
-                            map.values().forEach(list -> list.sort(Comparator.comparing(AuthorDto::getOrder)));
-                            return map;
-                        }));
     }
 
     @Override
